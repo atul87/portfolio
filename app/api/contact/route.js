@@ -3,6 +3,30 @@ import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
 const isValidEmail = (value = '') => /[^\s@]+@[^\s@]+\.[^\s@]+/.test(value);
+const RATE_LIMIT_WINDOW_MS = 60 * 1000;
+const RATE_LIMIT_MAX_REQUESTS = 5;
+const rateLimitStore = new Map();
+
+function getClientIp(request) {
+  const forwardedFor = request.headers.get('x-forwarded-for') || '';
+  const firstIp = forwardedFor.split(',')[0].trim();
+  return firstIp || 'unknown';
+}
+
+function isRateLimited(ip) {
+  const now = Date.now();
+  const timestamps = rateLimitStore.get(ip) || [];
+  const validTimestamps = timestamps.filter((ts) => now - ts < RATE_LIMIT_WINDOW_MS);
+
+  if (validTimestamps.length >= RATE_LIMIT_MAX_REQUESTS) {
+    rateLimitStore.set(ip, validTimestamps);
+    return true;
+  }
+
+  validTimestamps.push(now);
+  rateLimitStore.set(ip, validTimestamps);
+  return false;
+}
 
 // Create and configure Nodemailer transporter
 const transporter = nodemailer.createTransport({
@@ -71,6 +95,14 @@ async function sendEmail(payload, message) {
 
 export async function POST(request) {
   try {
+    const ip = getClientIp(request);
+    if (isRateLimited(ip)) {
+      return NextResponse.json({
+        success: false,
+        message: 'Too many requests. Try later.',
+      }, { status: 429 });
+    }
+
     const payload = await request.json();
     const { name, email, message: userMessage } = payload;
     const token = process.env.TELEGRAM_BOT_TOKEN;
