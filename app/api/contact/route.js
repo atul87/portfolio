@@ -1,11 +1,19 @@
 import axios from 'axios';
+import { Redis } from '@upstash/redis';
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
 const isValidEmail = (value = '') => /[^\s@]+@[^\s@]+\.[^\s@]+/.test(value);
-const RATE_LIMIT_WINDOW_MS = 60 * 1000;
+const RATE_LIMIT_WINDOW_SECONDS = 60;
+const RATE_LIMIT_WINDOW_MS = RATE_LIMIT_WINDOW_SECONDS * 1000;
 const RATE_LIMIT_MAX_REQUESTS = 5;
 const rateLimitStore = new Map();
+const redis = process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN
+  ? new Redis({
+    url: process.env.UPSTASH_REDIS_REST_URL,
+    token: process.env.UPSTASH_REDIS_REST_TOKEN,
+  })
+  : null;
 
 function getClientIp(request) {
   const forwardedFor = request.headers.get('x-forwarded-for') || '';
@@ -13,7 +21,21 @@ function getClientIp(request) {
   return firstIp || 'unknown';
 }
 
-function isRateLimited(ip) {
+async function isRateLimited(ip) {
+  if (redis) {
+    try {
+      const key = `rate:${ip}`;
+      const requests = await redis.incr(key);
+      if (requests === 1) {
+        await redis.expire(key, RATE_LIMIT_WINDOW_SECONDS);
+      }
+
+      return requests > RATE_LIMIT_MAX_REQUESTS;
+    } catch (error) {
+      console.error('Rate limiter Redis fallback:', error.message);
+    }
+  }
+
   const now = Date.now();
   const timestamps = rateLimitStore.get(ip) || [];
   const validTimestamps = timestamps.filter((ts) => now - ts < RATE_LIMIT_WINDOW_MS);
@@ -96,7 +118,7 @@ async function sendEmail(payload, message) {
 export async function POST(request) {
   try {
     const ip = getClientIp(request);
-    if (isRateLimited(ip)) {
+    if (await isRateLimited(ip)) {
       return NextResponse.json({
         success: false,
         message: 'Too many requests. Try later.',
