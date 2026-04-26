@@ -16,6 +16,8 @@ function BlogCard({ blog }) {
           height={1080}
           width={1920}
           alt=""
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          loading="lazy"
           className='h-full w-full group-hover:scale-110 transition-all duration-300'
         />
       </div>

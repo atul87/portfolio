@@ -21,7 +21,7 @@ test("api endpoints respond with expected status", async ({ request }) => {
     const contactPost = await request.post("/api/contact", {
         data: {
             name: "E2E Test",
-            email: "test@example.com",
+            email: "invalid-email",
             message: "Hello from automated test",
         },
     });

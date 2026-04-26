@@ -15,6 +15,7 @@ function Experience() {
         alt="Hero"
         width={1572}
         height={795}
+        sizes="100vw"
         className="absolute top-0 -z-10"
       />
 
@@ -47,6 +48,8 @@ function Experience() {
                         alt="Hero"
                         width={1080}
                         height={200}
+                        sizes="(max-width: 1024px) 100vw, 540px"
+                        loading="lazy"
                         className="absolute bottom-0 opacity-80"
                       />
                       <div className="flex justify-center">

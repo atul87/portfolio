@@ -1,5 +1,6 @@
 // @flow strict
 import { personalData } from '@/utils/data/personal-data';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { BiLogoLinkedin } from "react-icons/bi";
 import { CiLocationOn } from "react-icons/ci";
@@ -7,7 +8,14 @@ import { FaLaptopCode } from 'react-icons/fa';
 import { IoLogoGithub, IoMdCall } from "react-icons/io";
 import { MdAlternateEmail } from "react-icons/md";
 import { SiLeetcode } from "react-icons/si";
-import ContactForm from './contact-form';
+
+const ContactForm = dynamic(() => import('./contact-form'), {
+  loading: () => (
+    <div className="max-w-3xl rounded-lg border border-[#464c6a] p-3 lg:p-5">
+      <p className="text-sm text-[#d3d8e8]">Loading contact form...</p>
+    </div>
+  ),
+});
 
 function ContactSection() {
   return (

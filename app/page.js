@@ -14,7 +14,9 @@ async function getData() {
   }
 
   try {
-    const res = await fetch(`https://dev.to/api/articles?username=${personalData.devUsername}`)
+    const res = await fetch(`https://dev.to/api/articles?username=${personalData.devUsername}`, {
+      next: { revalidate: 3600 },
+    })
 
     if (!res.ok) {
       return [];
