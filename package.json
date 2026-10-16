@@ -3,7 +3,7 @@
   "description": "Portfolio of Atul",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@10.5.2",
+  "packageManager": "pnpm@10.34.6",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -39,9 +39,7 @@
   },
   "pnpm": {
     "onlyBuiltDependencies": [
-      "@parcel/watcher",
-      "sharp",
-      "unrs-resolver"
+      "sharp"
     ]
   }
 }
