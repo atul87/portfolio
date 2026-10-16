@@ -51,10 +51,11 @@ const jsonLd = {
   "@type": "Person",
   name: "Atul",
   jobTitle: "AI/ML Engineer & Full-Stack Developer",
-  url: "https://github.com/atul87",
+  url: "https://portfolio-five-black-83.vercel.app/",
   sameAs: [
     "https://github.com/atul87",
-    "https://linkedin.com/in/atul-verma4321",
+    "https://www.linkedin.com/in/atulatul87",
+    "https://www.geeksforgeeks.org/profile/atul8756",
     "https://leetcode.com/u/Atul9876/",
     "https://www.naukri.com/code360/profile/AtulCodeWizard",
   ],
