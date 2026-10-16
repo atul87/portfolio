@@ -2,7 +2,23 @@ import axios from "axios";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
-  const reqBody = await request.json();
+  let reqBody;
+  try {
+    reqBody = await request.json();
+  } catch {
+    return NextResponse.json({
+      error: "Invalid JSON payload.",
+      success: false,
+    }, { status: 400 });
+  }
+
+  if (!reqBody || typeof reqBody !== 'object' || Array.isArray(reqBody)) {
+    return NextResponse.json({
+      error: "Invalid JSON payload.",
+      success: false,
+    }, { status: 400 });
+  }
+
   const secret_key = process.env.RECAPTCHA_SECRET_KEY;
 
   if (!reqBody?.token) {

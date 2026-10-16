@@ -26,10 +26,10 @@ export const metadata = {
     locale: "en_IN",
     images: [
       {
-        url: "/profile.png",
-        width: 280,
-        height: 280,
-        alt: "Atul - AI/ML Engineer",
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Portfolio of Atul - AI/ML Engineer & Full-Stack Developer",
       },
     ],
   },
@@ -38,7 +38,7 @@ export const metadata = {
     title: "Portfolio of Atul - AI/ML Engineer & Full-Stack Developer",
     description:
       "Explore Atul's projects, skills, and experience in AI/ML, data science, and full-stack web development.",
-    images: ["/profile.png"],
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,

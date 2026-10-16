@@ -163,7 +163,16 @@ export async function POST(request) {
       );
     }
 
-    const { name, email, message: userMessage } = payload;
+    const { name, email, message: userMessage, website } = payload;
+
+    // Honeypot check: automated spam bots fill hidden inputs
+    if (website) {
+      return NextResponse.json({
+        success: true,
+        message: 'Message sent successfully!',
+      }, { status: 200 });
+    }
+
     const token = process.env.TELEGRAM_BOT_TOKEN;
     const chat_id = process.env.TELEGRAM_CHAT_ID;
     const emailAddress = process.env.EMAIL_ADDRESS;

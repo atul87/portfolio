@@ -91,6 +91,7 @@ function HeroSection() {
               role="button"
               target="_blank"
               rel="noopener noreferrer"
+              download={personalData.resume ? "Atul_Verma_AI_ML_Resume.pdf" : undefined}
               href={personalData.resume || personalData.github}
             >
               <span>{personalData.resume ? "Get Resume" : "View GitHub"}</span>

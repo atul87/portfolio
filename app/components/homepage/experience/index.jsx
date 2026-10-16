@@ -61,13 +61,22 @@ function Experience() {
                         <div className="text-violet-500  transition-all duration-300 hover:scale-125">
                           <BsPersonWorkspace size={36} />
                         </div>
-                        <div>
-                          <p className="text-base sm:text-xl mb-2 font-medium uppercase">
+                        <div className="flex-1">
+                          <p className="text-base sm:text-xl mb-1 font-semibold text-white uppercase tracking-wide">
                             {experience.title}
                           </p>
-                          <p className="text-sm sm:text-base">
+                          <p className="text-sm sm:text-base text-gray-300 font-medium">
                             {experience.company}
                           </p>
+                          {Array.isArray(experience.bullets) && experience.bullets.length > 0 && (
+                            <ul className="mt-3 space-y-1.5 text-xs sm:text-sm text-gray-400 list-disc pl-4 marker:text-[#16f2b3]">
+                              {experience.bullets.map((bullet, idx) => (
+                                <li key={idx} className="leading-relaxed">
+                                  {bullet}
+                                </li>
+                              ))}
+                            </ul>
+                          )}
                         </div>
                       </div>
                     </div>

@@ -114,22 +114,42 @@ function ContactForm() {
               value={userInput.message}
             />
           </div>
+
+          {/* Honeypot field for bot protection */}
+          <div className="hidden" aria-hidden="true">
+            <label htmlFor="contact-website">Website</label>
+            <input
+              id="contact-website"
+              name="website"
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+              value={userInput.website || ""}
+              onChange={(e) => setUserInput({ ...userInput, website: e.target.value })}
+            />
+          </div>
+
           <div className="flex flex-col items-center gap-3">
             {error.required && <p className="text-sm text-red-400" role="alert">
               Please complete all fields.
             </p>}
             <button
               type="submit"
-              className="flex min-h-11 items-center gap-1 rounded-full bg-gradient-to-r from-pink-500 to-violet-600 px-5 py-2.5 text-center text-xs font-medium uppercase tracking-wider text-white no-underline transition-all duration-200 ease-out hover:gap-3 hover:text-white hover:no-underline disabled:cursor-not-allowed disabled:opacity-60 md:px-12 md:py-3 md:text-sm md:font-semibold cursor-pointer"
+              className="flex min-h-11 items-center gap-2 rounded-full bg-gradient-to-r from-pink-500 to-violet-600 px-5 py-2.5 text-center text-xs font-medium uppercase tracking-wider text-white no-underline transition-all duration-200 ease-out hover:gap-3 hover:text-white hover:no-underline disabled:cursor-not-allowed disabled:opacity-60 md:px-12 md:py-3 md:text-sm md:font-semibold cursor-pointer focus-visible:ring-2 focus-visible:ring-[#16f2b3] focus:outline-none"
               disabled={isLoading}
             >
               {
-                isLoading ?
-                  <span>Sending Message...</span> :
+                isLoading ? (
+                  <span className="flex items-center gap-2">
+                    <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                    Sending Message...
+                  </span>
+                ) : (
                   <span className="flex items-center gap-1">
                     Send Message
                     <TbMailForward size={20} />
                   </span>
+                )
               }
             </button>
           </div>

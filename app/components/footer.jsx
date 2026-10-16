@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { personalData } from '@/utils/data/personal-data';
 import { FaLaptopCode } from "react-icons/fa";
-import { BsGithub } from "react-icons/bs";
+import { BsGithub, BsLinkedin } from "react-icons/bs";
 import { SiGeeksforgeeks } from "react-icons/si";
 
 function Footer() {
@@ -12,16 +12,16 @@ function Footer() {
         <div className="flex justify-center -z-40">
           <div className="absolute top-0 h-[1px] w-1/2  bg-gradient-to-r from-transparent via-violet-500 to-transparent"></div>
         </div>
-        <div className="flex flex-col md:flex-row items-center justify-between">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm">
-            © Portfolio by <Link target="_blank" rel="noopener noreferrer" href={personalData.linkedIn} className="text-[#16f2b3]">{personalData.name}</Link>
+            © Portfolio by <Link target="_blank" rel="noopener noreferrer" href={personalData.linkedIn} className="text-[#16f2b3] hover:underline">{personalData.name}</Link>
           </p>
-          <div className="flex items-center gap-5">
+          <div className="flex flex-wrap items-center gap-5">
             <Link
               target="_blank"
               rel="noopener noreferrer"
               href={personalData.github}
-              className="flex items-center gap-2 uppercase hover:text-[#16f2b3]"
+              className="flex items-center gap-2 uppercase hover:text-[#16f2b3] transition-colors"
               aria-label="GitHub Profile"
             >
               <BsGithub />
@@ -30,8 +30,18 @@ function Footer() {
             <Link
               target="_blank"
               rel="noopener noreferrer"
+              href={personalData.linkedIn}
+              className="flex items-center gap-2 uppercase hover:text-[#16f2b3] transition-colors"
+              aria-label="LinkedIn Profile"
+            >
+              <BsLinkedin />
+              <span>LinkedIn</span>
+            </Link>
+            <Link
+              target="_blank"
+              rel="noopener noreferrer"
               href={personalData.geeksforgeeks}
-              className="flex items-center gap-2 uppercase hover:text-[#16f2b3]"
+              className="flex items-center gap-2 uppercase hover:text-[#16f2b3] transition-colors"
               aria-label="GeeksforGeeks Profile"
             >
               <SiGeeksforgeeks />
@@ -41,7 +51,7 @@ function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               href={personalData.code360}
-              className="flex items-center gap-2 uppercase hover:text-[#16f2b3]"
+              className="flex items-center gap-2 uppercase hover:text-[#16f2b3] transition-colors"
               aria-label="Code360 Profile"
             >
               <FaLaptopCode />

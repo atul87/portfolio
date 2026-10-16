@@ -44,39 +44,24 @@ html {
   }
 }
 
-#sticky-card-1 {
-  --index: 1;
-}
-
-#sticky-card-2 {
-  --index: 2;
-}
-
-#sticky-card-3 {
-  --index: 3;
-}
-
-#sticky-card-4 {
-  --index: 4;
-}
-
-#sticky-card-5 {
-  --index: 5;
-}
-
-#sticky-card-6 {
-  --index: 6;
-}
-
-#sticky-card-7 {
-  --index: 7;
-}
-
-#sticky-card-8 {
-  --index: 8;
-}
+#sticky-card-1 { --index: 1; }
+#sticky-card-2 { --index: 2; }
+#sticky-card-3 { --index: 3; }
+#sticky-card-4 { --index: 4; }
+#sticky-card-5 { --index: 5; }
+#sticky-card-6 { --index: 6; }
+#sticky-card-7 { --index: 7; }
+#sticky-card-8 { --index: 8; }
+#sticky-card-9 { --index: 9; }
+#sticky-card-10 { --index: 10; }
 
 .sticky-card {
-  // padding-top: calc(var(--index) * 2.5rem);
-  top: calc(var(--index) * 4rem);
+  top: clamp(4.5rem, calc(4rem + var(--index, 1) * 0.75rem), 8rem);
+}
+
+@media (max-width: 767px) {
+  .sticky-card {
+    position: relative !important;
+    top: 0 !important;
+  }
 }

@@ -15,25 +15,61 @@ test("home page renders key sections and stats", async ({ page }) => {
     await expect(page.getByText("IEEE Research Paper")).toBeVisible();
     await expect(page.getByText("DSA Problems Solved")).toBeVisible();
 
+    // Verify Research Section
+    await expect(page.locator("#research")).toBeVisible();
+    await expect(page.getByText("Research & Publications")).toBeVisible();
+    await expect(page.getByText("Federated Generative Intelligence").first()).toBeVisible();
+
     // Verify Contact Section
     await expect(page.locator("#contact")).toBeVisible();
 });
 
-test("project category filters update project cards", async ({ page }) => {
+test("project category filters update project cards and counters", async ({ page }) => {
     await page.goto("/");
 
+    const projectSection = page.locator("#projects");
+
+    // Verify category buttons and counts
+    await expect(projectSection.getByRole("button", { name: /^All/ })).toBeVisible();
+    await expect(projectSection.getByRole("button", { name: /AI & ML/ })).toBeVisible();
+    await expect(projectSection.getByRole("button", { name: /Full-Stack/ })).toBeVisible();
+    await expect(projectSection.getByRole("button", { name: /Civic & PWA/ })).toBeVisible();
+
+    // Initial state: Showing 10 of 10 projects
+    await expect(page.getByText(/Showing 10 of 10 projects/)).toBeVisible();
+
     // Click "AI & ML" filter
-    const aiFilterBtn = page.getByRole("button", { name: "AI & ML" });
-    await expect(aiFilterBtn).toBeVisible();
+    const aiFilterBtn = projectSection.getByRole("button", { name: /AI & ML/ });
     await aiFilterBtn.click();
 
-    // Verify AI/ML project card is shown
+    // Verify AI/ML project cards are shown and counter updates
+    await expect(page.getByText("FORESIGHT").first()).toBeVisible();
     await expect(page.getByText("Crop Recommendation System").first()).toBeVisible();
+    await expect(page.getByText(/Showing 7 of 10 projects/)).toBeVisible();
 
     // Click "Full-Stack" filter
-    const fullStackBtn = page.getByRole("button", { name: "Full-Stack" });
+    const fullStackBtn = projectSection.getByRole("button", { name: /Full-Stack/ });
     await fullStackBtn.click();
-    await expect(page.getByText("Flavour Fleet - Premium Food Delivery Platform").first()).toBeVisible();
+    await expect(page.getByText(/Flavour Fleet/).first()).toBeVisible();
+    await expect(page.getByText(/Showing 5 of 10 projects/)).toBeVisible();
+
+    // Click "All" filter to restore
+    const allBtn = projectSection.getByRole("button", { name: /^All/ });
+    await allBtn.click();
+    await expect(page.getByText(/Showing 10 of 10 projects/)).toBeVisible();
+});
+
+test("project card copy button copies project details and shows feedback", async ({ page, context }) => {
+    // Grant clipboard permissions
+    await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+    await page.goto("/");
+
+    const copyBtn = page.getByRole("button", { name: "Copy project details" }).first();
+    await expect(copyBtn).toBeVisible();
+    await copyBtn.click();
+
+    // Check feedback state
+    await expect(page.getByText("Copied!").first()).toBeVisible();
 });
 
 test("contact form validates input fields client-side", async ({ page }) => {
@@ -45,8 +81,8 @@ test("contact form validates input fields client-side", async ({ page }) => {
     await expect(page.getByText("Please complete all fields.")).toBeVisible();
 
     // Fill invalid email and check email error
-    const nameInput = page.locator('input[type="text"]');
-    const emailInput = page.locator('input[type="email"]');
+    const nameInput = page.locator('#contact-name');
+    const emailInput = page.locator('#contact-email');
     await nameInput.fill("Test Recruiter");
     await emailInput.fill("invalid-email-format");
     await emailInput.blur();

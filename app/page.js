@@ -7,6 +7,7 @@ import Experience from "./components/homepage/experience";
 import HeroSection from "./components/homepage/hero-section";
 import StatsSection from "./components/homepage/stats";
 import Projects from "./components/homepage/projects";
+import ResearchSection from "./components/homepage/research";
 import Skills from "./components/homepage/skills";
 import { localBlogs } from "@/utils/data/local-blogs";
 
@@ -48,6 +49,7 @@ export default async function Home() {
       <Experience />
       <Skills />
       <Projects />
+      <ResearchSection />
       <Education />
       <Blog blogs={blogs} />
       <ContactSection />
