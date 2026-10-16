@@ -1,6 +1,6 @@
 <div align="center">
 
-# ⚡ Atul Verma — Portfolio & Engineering Lab
+# ⚡ Atul — Portfolio & Engineering Lab
 ### AI/ML Engineer · Full-Stack Developer · IEEE Research Author
 
 [![Next.js 16](https://img.shields.io/badge/Next.js-16.3.8-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
@@ -231,5 +231,5 @@ npm run lint
 This repository is distributed under the **MIT License**. See [`LICENSE`](LICENSE) for details.
 
 <div align="center">
-  <sub>Engineered with precision by <strong>Atul Verma</strong> · Star ⭐ this repo if you find it helpful!</sub>
+  <sub>Engineered with precision by <strong>Atul</strong> · Star ⭐ this repo if you find it helpful!</sub>
 </div>
