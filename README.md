@@ -28,7 +28,7 @@ This portfolio represents more than a static resume—it is an **enterprise-grad
 - **Published Research:** First-author contributions in autonomous cyber defence presented at the **IEEE International Symposium on Computer Science (ISCS 2025)**.
 - **Full-Stack Engineering:** Scalable Next.js App Router architecture, real-time Socket.IO integrations, PWA offline caching, and serverless API endpoints.
 - **Security & UX Hardening:** Built-in rate limiting, anti-spam honeypot verification, enterprise HTTP security headers, and WCAG-compliant accessibility.
-- **Automated Verification:** 100% passing automated Playwright end-to-end test suite covering frontend UI, APIs, assets, and SEO.
+- **Automated Verification:** A Playwright end-to-end suite covering core UI flows, API validation, navigation, assets, and metadata. Check the latest CI run for the current pass status.
 
 ---
 
@@ -55,7 +55,7 @@ This portfolio represents more than a static resume—it is an **enterprise-grad
 | **Styling & Design** | [Tailwind CSS](https://tailwindcss.com/), Custom SCSS, Glassmorphism, Dark Neon Cyberpunk Theme |
 | **Backend & APIs** | Next.js API Routes, Nodemailer (SMTP), Telegram Bot API, Upstash Redis Rate Limiting |
 | **Testing & CI/CD** | [Playwright](https://playwright.dev/) End-to-End Suite, ESLint, Vercel Automated Deployments |
-| **Security & SEO** | CSP, HSTS, X-Frame-Options, Dynamic `sitemap.xml`, `robots.txt`, 1200×630 OpenGraph Banner |
+| **Security & SEO** | HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, dynamic `sitemap.xml`, `robots.txt`, 1200×630 Open Graph banner |
 
 ---
 
@@ -126,7 +126,7 @@ e:\Portfolio
 │   ├── robots.txt                  # Search engine crawler directive
 │   └── sitemap.js                  # Automated dynamic XML sitemap
 ├── content/blogs/                  # Markdown files for published technical articles
-├── e2e/                            # Playwright end-to-end test suite (17+ tests)
+├── e2e/                            # Playwright end-to-end test suite
 ├── public/                         # Optimized static assets, resume PDF & 1200x630 OG image
 ├── utils/data/                     # Single-source-of-truth configuration files
 ├── next.config.js                  # Turbopack, package optimization & security headers
@@ -199,8 +199,8 @@ npm run lint
 ### Test Coverage Highlights
 - ✅ **API Health & Validation:** Verifies status codes, JSON format enforcement, spam honeypot trap, and rate limiting.
 - ✅ **Assets & Resume Integrity:** Validates that `/resume.pdf` exists and returns a valid `%PDF` binary header.
-- ✅ **Projects & Micro-interactions:** Tests category filter states (*AI & ML*, *Full-Stack*), verified live demo links, and copy actions.
-- ✅ **Research & DOI Links:** Ensures both IEEE ISCS and SCEECS paper links resolve to official IEEE DOI registries.
+- ✅ **Projects & Micro-interactions:** Tests category filters, project-card link rendering, and copy actions.
+- ✅ **Research & DOI Links:** Checks that the configured IEEE ISCS and SCEECS DOI links are present.
 - ✅ **SEO & Metadata:** Asserts dynamic sitemap generation, crawler robots rules, OpenGraph preview images, and canonical links.
 - ✅ **Accessibility & Mobile UX:** Verifies keyboard Escape key drawer collapse and screen-reader compliant aria tags.
 
