@@ -7,5 +7,6 @@ export const contactsData = {
     linkedIn: "https://linkedin.com/in/atul-verma4321",
     leetcode: "https://leetcode.com/u/Atul9876/",
     code360: "https://www.naukri.com/code360/profile/AtulCodeWizard",
+    geeksforgeeks: "https://www.geeksforgeeks.org/profile/atul8756",
     devUsername: ""
 }

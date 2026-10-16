@@ -1,38 +1,44 @@
 export const educations = [
   {
     id: 1,
-    title: "B.Tech in Computer Science",
+    title: "Bachelor of Technology (Computer Science)",
     duration: "2023 - 2027",
-    institution: "Allenhouse Institute of Technology, Kanpur - CGPA 7.5/10",
+    institution: "Allenhouse Institute of Technology, Kanpur",
   },
   {
     id: 2,
-    title: "Class 12",
+    title: "Intermediate (Class XII)",
     duration: "2022",
-    institution: "B.G.V. Inter College - 75%",
+    institution: "B.G.V. Inter College",
   },
   {
     id: 3,
-    title: "Class 10",
-    duration: "2020",
-    institution: "B.G.V. Inter College - 80%",
+    title: "Agentic AI Certification and Training",
+    duration: "2026",
+    institution: "Oracle, Infosys",
   },
   {
     id: 4,
-    title: "Artificial Intelligence and GenAI",
+    title: "Full Stack Development Training",
+    duration: "2026",
+    institution: "Allenhouse Institute of Technology",
+  },
+  {
+    id: 5,
+    title: "Data Science Training",
+    duration: "2026",
+    institution: "Apna College",
+  },
+  {
+    id: 6,
+    title: "Artificial Intelligence and Generative AI Training",
     duration: "2025",
     institution: "IIT Kanpur",
   },
   {
-    id: 5,
-    title: "Google Play Academy Store Listing Certificate",
-    duration: "Valid till Feb 2028",
-    institution: "Credential ID: 131848675",
-  },
-  {
-    id: 6,
-    title: "Python, Web Fundamentals, DSA, and Java Basics",
-    duration: "2024 - 2027",
-    institution: "Coding Ninjas, Code with Harry, Apna College, Naukri Code360",
+    id: 7,
+    title: "Python Certification",
+    duration: "2025",
+    institution: "Coding Ninjas",
   }
 ]

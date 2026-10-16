@@ -1,21 +1,21 @@
-FROM node:20 AS base
+FROM node:24-bookworm-slim AS base
 WORKDIR /app
-RUN npm i -g pnpm
-RUN npm i -g next
+RUN npm i -g pnpm@10
 
-COPY package*.json ./
-RUN pnpm install
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 
 COPY . .
 RUN pnpm build
 
-FROM node:20-alpine3.19 as release
+FROM node:24-bookworm-slim AS release
 WORKDIR /app
-RUN npm i -g pnpm
+RUN npm i -g pnpm@10
 
 COPY --from=base /app/node_modules ./node_modules
 COPY --from=base /app/package.json ./package.json
 COPY --from=base /app/.next ./.next
+COPY --from=base /app/public ./public
 
 EXPOSE 3000
 

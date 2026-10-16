@@ -46,7 +46,7 @@ function Skills() {
                   </div>
                 </div>
                 <div className="flex flex-col items-center justify-center gap-3 p-6">
-                  <div className="h-8 sm:h-10">
+                  <div className="h-10 w-10 flex items-center justify-center">
                     <Image
                       src={skillsImage(skill)?.src || "/skills/default.svg"}
                       alt={skill}
@@ -54,7 +54,7 @@ function Skills() {
                       height={40}
                       sizes="40px"
                       loading="lazy"
-                      className="h-full w-auto rounded-lg"
+                      className="h-10 w-10 object-contain rounded-lg"
                     />
                   </div>
                   <p className="text-white text-sm sm:text-lg">

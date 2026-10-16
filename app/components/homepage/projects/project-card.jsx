@@ -55,40 +55,47 @@ function ProjectCard({ project }) {
           </div>
           <div>
             <span className="ml-4 lg:ml-8 mr-2 text-white">myRole:</span>
+            <span className="text-gray-400">{`'`}</span>
             <span className="text-orange-400">{project.role}</span>
-            <span className="text-gray-400">,</span>
+            <span className="text-gray-400">{`',`}</span>
           </div>
           <div className="ml-4 lg:ml-8 mr-2">
-            <span className="text-white">Description:</span>
-            <span className="text-cyan-400">{' ' + project.description}</span>
-            <span className="text-gray-400">,</span>
+            <span className="text-white">description:</span>
+            <span className="text-gray-400">{` '`}</span>
+            <span className="text-cyan-400">{project.description}</span>
+            <span className="text-gray-400">{`',`}</span>
           </div>
           <div><span className="text-gray-400">{`};`}</span></div>
         </code>
-        {(project.code || project.demo) && (
-          <div className="mt-6 flex flex-wrap gap-3">
-            {project.code && (
-              <Link
-                href={project.code}
-                target="_blank"
-                className="inline-flex items-center gap-2 rounded-full border border-[#16f2b3]/60 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-[#16f2b3] transition-all duration-300 hover:bg-[#16f2b3] hover:text-[#0d1224]"
-              >
-                <FaGithub />
-                Code
-              </Link>
-            )}
-            {project.demo && (
-              <Link
-                href={project.demo}
-                target="_blank"
-                className="inline-flex items-center gap-2 rounded-full border border-pink-500/60 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-pink-400 transition-all duration-300 hover:bg-pink-500 hover:text-white"
-              >
-                <FaExternalLinkAlt />
-                Live
-              </Link>
-            )}
-          </div>
-        )}
+        <div className="mt-6 flex flex-wrap gap-3">
+          {project.code && (
+            <Link
+              href={project.code}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-[#16f2b3]/60 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-[#16f2b3] transition-all duration-300 hover:bg-[#16f2b3] hover:text-[#0d1224]"
+            >
+              <FaGithub />
+              Code
+            </Link>
+          )}
+          {project.demo && (
+            <Link
+              href={project.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-pink-500/60 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-pink-400 transition-all duration-300 hover:bg-pink-500 hover:text-white"
+            >
+              <FaExternalLinkAlt />
+              Live
+            </Link>
+          )}
+          {!project.code && !project.demo && (
+            <span className="inline-flex items-center gap-2 rounded-full border border-gray-600/60 px-4 py-1.5 text-xs font-medium uppercase tracking-wider text-gray-400">
+              Source Coming Soon
+            </span>
+          )}
+        </div>
       </div>
     </div>
   );

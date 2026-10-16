@@ -17,6 +17,7 @@ const GlowCard = ({ children , identifier}) => {
     };
 
     const UPDATE = (event) => {
+      if (!CARDS || CARDS.length === 0) return;
       for (const CARD of CARDS) {
         const CARD_BOUNDS = CARD.getBoundingClientRect();
 
@@ -50,6 +51,7 @@ const GlowCard = ({ children , identifier}) => {
     document.body.addEventListener('pointermove', UPDATE);
 
     const RESTYLE = () => {
+      if (!CONTAINER) return;
       CONTAINER.style.setProperty('--gap', CONFIG.gap);
       CONTAINER.style.setProperty('--blur', CONFIG.blur);
       CONTAINER.style.setProperty('--spread', CONFIG.spread);

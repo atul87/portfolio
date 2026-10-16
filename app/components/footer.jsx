@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { personalData } from '@/utils/data/personal-data';
 import { FaLaptopCode } from "react-icons/fa";
 import { BsGithub } from "react-icons/bs";
+import { SiGeeksforgeeks } from "react-icons/si";
 
 function Footer() {
   return (
@@ -13,21 +14,35 @@ function Footer() {
         </div>
         <div className="flex flex-col md:flex-row items-center justify-between">
           <p className="text-sm">
-            © Portfolio by <Link target="_blank" href={personalData.linkedIn} className="text-[#16f2b3]">{personalData.name}</Link>
+            © Portfolio by <Link target="_blank" rel="noopener noreferrer" href={personalData.linkedIn} className="text-[#16f2b3]">{personalData.name}</Link>
           </p>
           <div className="flex items-center gap-5">
             <Link
               target="_blank"
+              rel="noopener noreferrer"
               href={personalData.github}
               className="flex items-center gap-2 uppercase hover:text-[#16f2b3]"
+              aria-label="GitHub Profile"
             >
               <BsGithub />
               <span>GitHub</span>
             </Link>
             <Link
               target="_blank"
+              rel="noopener noreferrer"
+              href={personalData.geeksforgeeks}
+              className="flex items-center gap-2 uppercase hover:text-[#16f2b3]"
+              aria-label="GeeksforGeeks Profile"
+            >
+              <SiGeeksforgeeks />
+              <span>GFG</span>
+            </Link>
+            <Link
+              target="_blank"
+              rel="noopener noreferrer"
               href={personalData.code360}
               className="flex items-center gap-2 uppercase hover:text-[#16f2b3]"
+              aria-label="Code360 Profile"
             >
               <FaLaptopCode />
               <span>Code360</span>

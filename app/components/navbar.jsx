@@ -1,17 +1,37 @@
-// @flow strict
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { personalData } from "@/utils/data/personal-data";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const menuButtonRef = useRef(null);
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
 
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") closeMenu();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  useEffect(() => {
+    if (!isOpen) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    const menuButton = menuButtonRef.current;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      menuButton?.focus();
+    };
+  }, [isOpen]);
+
   return (
-    <nav className="bg-transparent">
+    <nav className="bg-transparent" aria-label="Primary navigation">
       <div className="flex items-center justify-between py-5">
         <div className="flex flex-shrink-0 items-center">
           <Link
@@ -23,7 +43,8 @@ function Navbar() {
 
         {/* Hamburger button — visible only on mobile */}
         <button
-          className="md:hidden flex flex-col items-center justify-center gap-[5px] p-2 z-[60]"
+          ref={menuButtonRef}
+          className="md:hidden flex min-h-11 min-w-11 flex-col items-center justify-center gap-[5px] rounded-md p-2 z-[60] cursor-pointer"
           onClick={toggleMenu}
           aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={isOpen}
@@ -67,6 +88,9 @@ function Navbar() {
           <li>
             <Link className="block px-4 py-2 no-underline outline-none hover:no-underline" href="/#projects"><div className="text-sm text-white transition-colors duration-300 hover:text-pink-600">PROJECTS</div></Link>
           </li>
+          <li>
+            <Link className="block px-4 py-2 no-underline outline-none hover:no-underline" href="/#contact"><div className="text-sm text-[#16f2b3] font-medium transition-colors duration-300 hover:text-pink-600">CONTACT</div></Link>
+          </li>
         </ul>
 
         {/* Mobile drawer overlay */}
@@ -83,6 +107,7 @@ function Navbar() {
           className={`fixed top-0 right-0 h-full w-64 bg-[#0d1224] border-l border-[#1b2c68] z-50 transform transition-transform duration-300 ease-in-out md:hidden ${
             isOpen ? "translate-x-0" : "translate-x-full"
           }`}
+          aria-hidden={!isOpen}
         >
           <div className="flex flex-col pt-20 px-6 gap-2">
             <Link className="block py-3 no-underline outline-none hover:no-underline border-b border-[#1b2c68]" href="/#about" onClick={closeMenu}>

@@ -37,6 +37,14 @@ async function isRateLimited(ip) {
   }
 
   const now = Date.now();
+  if (rateLimitStore.size > 1000) {
+    for (const [storedIp, list] of rateLimitStore.entries()) {
+      if (list.every((ts) => now - ts >= RATE_LIMIT_WINDOW_MS)) {
+        rateLimitStore.delete(storedIp);
+      }
+    }
+  }
+
   const timestamps = rateLimitStore.get(ip) || [];
   const validTimestamps = timestamps.filter((ts) => now - ts < RATE_LIMIT_WINDOW_MS);
 
@@ -77,16 +85,29 @@ async function sendTelegramMessage(token, chat_id, message) {
   }
 };
 
+const escapeHtml = (value = "") =>
+  String(value).replace(
+    /[&<>"']/g,
+    (char) =>
+      ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;",
+      }[char])
+  );
+
 // HTML email template
 const generateEmailTemplate = (name, email, userMessage) => `
   <div style="font-family: Arial, sans-serif; color: #333; padding: 20px; background-color: #f4f4f4;">
     <div style="max-width: 600px; margin: auto; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
       <h2 style="color: #007BFF;">New Message Received</h2>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+      <p><strong>Email:</strong> ${escapeHtml(email)}</p>
       <p><strong>Message:</strong></p>
       <blockquote style="border-left: 4px solid #007BFF; padding-left: 10px; margin-left: 0;">
-        ${userMessage}
+        ${escapeHtml(userMessage)}
       </blockquote>
       <p style="font-size: 12px; color: #888;">Click reply to respond to the sender.</p>
     </div>
@@ -125,7 +146,23 @@ export async function POST(request) {
       }, { status: 429 });
     }
 
-    const payload = await request.json();
+    let payload;
+    try {
+      payload = await request.json();
+    } catch {
+      return NextResponse.json(
+        { success: false, message: 'Invalid JSON payload.' },
+        { status: 400 }
+      );
+    }
+
+    if (!payload || typeof payload !== 'object' || Array.isArray(payload)) {
+      return NextResponse.json(
+        { success: false, message: 'Invalid JSON payload.' },
+        { status: 400 }
+      );
+    }
+
     const { name, email, message: userMessage } = payload;
     const token = process.env.TELEGRAM_BOT_TOKEN;
     const chat_id = process.env.TELEGRAM_CHAT_ID;
@@ -137,6 +174,20 @@ export async function POST(request) {
       return NextResponse.json({
         success: false,
         message: 'Name, email, and message are required.',
+      }, { status: 400 });
+    }
+
+    if (typeof name !== 'string' || typeof email !== 'string' || typeof userMessage !== 'string') {
+      return NextResponse.json({
+        success: false,
+        message: 'Name, email, and message must be valid strings.',
+      }, { status: 400 });
+    }
+
+    if (name.length > 100 || email.length > 100 || userMessage.length > 2000) {
+      return NextResponse.json({
+        success: false,
+        message: 'Input exceeds maximum allowed length.',
       }, { status: 400 });
     }
 

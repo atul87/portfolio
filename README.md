@@ -145,7 +145,10 @@ This project is deployed on **Vercel** with automatic CI/CD:
 AI/ML Enthusiast | Full-Stack Developer
 
 * GitHub: [https://github.com/atul87](https://github.com/atul87)
-* LinkedIn: (Add your link here)
+* LinkedIn: [https://linkedin.com/in/atul-verma4321](https://linkedin.com/in/atul-verma4321)
+* GeeksforGeeks: [https://www.geeksforgeeks.org/profile/atul8756](https://www.geeksforgeeks.org/profile/atul8756)
+* LeetCode: [https://leetcode.com/u/Atul9876/](https://leetcode.com/u/Atul9876/)
+* Code360: [https://www.naukri.com/code360/profile/AtulCodeWizard](https://www.naukri.com/code360/profile/AtulCodeWizard)
 
 ---
 

@@ -2,6 +2,7 @@
 
 :root {
   --foreground-rgb: rgb(211, 216, 232);
+  color-scheme: dark;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -13,6 +14,34 @@
 body {
   color: rgb(var(--foreground-rgb));
   background-color: #0d1224;
+  min-width: 320px;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+::selection {
+  color: #0d1224;
+  background: #16f2b3;
+}
+
+:focus-visible {
+  outline: 2px solid #16f2b3;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 #sticky-card-1 {

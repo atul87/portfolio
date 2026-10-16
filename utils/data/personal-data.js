@@ -2,7 +2,7 @@ export const personalData = {
   name: "Atul",
   profile: "/profile.png",
   designation: "AI/ML Engineer | Full-Stack Developer",
-  description: "I am Atul, a B.Tech Computer Science student at Allenhouse Institute of Technology, Kanpur. I focus on AI/ML, data science, and full-stack web development, with a strong interest in smart cities, civic-tech, and agricultural intelligence. I build practical products with Python, Flask, React, JavaScript, MongoDB, and machine learning tools, and I am seeking internships and collaborations in AI/ML, data science, and backend development.",
+  description: "Technology undergraduate with a strong foundation in machine learning, generative AI, and full-stack application development. Brings practical experience in building data-driven solutions, working with cloud platforms, and translating real-world requirements into functional products. Combines an analytical, research-oriented mindset with strong problem-solving ability and a focus on creating reliable, user-centric technology.",
   email: "atulverma15704@gmail.com",
   secondaryEmail: "23bcs011atul@allenhouse.in",
   phone: "+91-8756890816",
@@ -12,6 +12,7 @@ export const personalData = {
   alternateLinkedIn: "https://linkedin.com/in/atul-verma4321",
   leetcode: "https://leetcode.com/u/Atul9876/",
   code360: "https://www.naukri.com/code360/profile/AtulCodeWizard",
+  geeksforgeeks: "https://www.geeksforgeeks.org/profile/atul8756",
   devUsername: "",
-  resume: ""
+  resume: "/resume.pdf"
 }

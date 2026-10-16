@@ -7,7 +7,7 @@ import { CiLocationOn } from "react-icons/ci";
 import { FaLaptopCode } from 'react-icons/fa';
 import { IoLogoGithub, IoMdCall } from "react-icons/io";
 import { MdAlternateEmail } from "react-icons/md";
-import { SiLeetcode } from "react-icons/si";
+import { SiGeeksforgeeks, SiLeetcode } from "react-icons/si";
 
 const ContactForm = dynamic(() => import('./contact-form'), {
   loading: () => (
@@ -35,7 +35,9 @@ function ContactSection() {
                 className="bg-[#8b98a5] p-2 rounded-full hover:bg-[#16f2b3] hover:scale-110 transition-all duration-300 text-gray-800 cursor-pointer"
                 size={36}
               />
-              <span>{personalData.email}</span>
+              <a href={`mailto:${personalData.email}`} className="hover:text-[#16f2b3] transition-colors duration-200">
+                {personalData.email}
+              </a>
             </p>
             {personalData.secondaryEmail && (
               <p className="text-sm md:text-xl flex items-center gap-3">
@@ -43,7 +45,9 @@ function ContactSection() {
                   className="bg-[#8b98a5] p-2 rounded-full hover:bg-[#16f2b3] hover:scale-110 transition-all duration-300 text-gray-800 cursor-pointer"
                   size={36}
                 />
-                <span>{personalData.secondaryEmail}</span>
+                <a href={`mailto:${personalData.secondaryEmail}`} className="hover:text-[#16f2b3] transition-colors duration-200">
+                  {personalData.secondaryEmail}
+                </a>
               </p>
             )}
             <p className="text-sm md:text-xl flex items-center gap-3">
@@ -51,9 +55,9 @@ function ContactSection() {
                 className="bg-[#8b98a5] p-2 rounded-full hover:bg-[#16f2b3] hover:scale-110 transition-all duration-300 text-gray-800 cursor-pointer"
                 size={36}
               />
-              <span>
+              <a href={`tel:${personalData.phone}`} className="hover:text-[#16f2b3] transition-colors duration-200">
                 {personalData.phone}
-              </span>
+              </a>
             </p>
             <p className="text-sm md:text-xl flex items-center gap-3">
               <CiLocationOn
@@ -65,26 +69,32 @@ function ContactSection() {
               </span>
             </p>
           </div>
-          <div className="mt-8 lg:mt-16 flex items-center gap-5 lg:gap-10">
-            <Link target="_blank" href={personalData.github} aria-label="GitHub Profile">
+          <div className="mt-8 lg:mt-16 flex flex-wrap items-center gap-3 lg:gap-8">
+            <Link target="_blank" rel="noopener noreferrer" href={personalData.github} aria-label="GitHub Profile">
               <IoLogoGithub
                 className="bg-[#8b98a5] p-3 rounded-full hover:bg-[#16f2b3] hover:scale-110 transition-all duration-300 text-gray-800 cursor-pointer"
                 size={48}
               />
             </Link>
-            <Link target="_blank" href={personalData.linkedIn} aria-label="LinkedIn Profile">
+            <Link target="_blank" rel="noopener noreferrer" href={personalData.linkedIn} aria-label="LinkedIn Profile">
               <BiLogoLinkedin
                 className="bg-[#8b98a5] p-3 rounded-full hover:bg-[#16f2b3] hover:scale-110 transition-all duration-300 text-gray-800 cursor-pointer"
                 size={48}
               />
             </Link>
-            <Link target="_blank" href={personalData.leetcode} aria-label="LeetCode Profile">
+            <Link target="_blank" rel="noopener noreferrer" href={personalData.leetcode} aria-label="LeetCode Profile">
               <SiLeetcode
                 className="bg-[#8b98a5] p-3 rounded-full hover:bg-[#16f2b3] hover:scale-110 transition-all duration-300 text-gray-800 cursor-pointer"
                 size={48}
               />
             </Link>
-            <Link target="_blank" href={personalData.code360} aria-label="Naukri Code360 Profile">
+            <Link target="_blank" rel="noopener noreferrer" href={personalData.geeksforgeeks} aria-label="GeeksforGeeks Profile">
+              <SiGeeksforgeeks
+                className="bg-[#8b98a5] p-3 rounded-full hover:bg-[#16f2b3] hover:scale-110 transition-all duration-300 text-gray-800 cursor-pointer"
+                size={48}
+              />
+            </Link>
+            <Link target="_blank" rel="noopener noreferrer" href={personalData.code360} aria-label="Naukri Code360 Profile">
               <FaLaptopCode
                 className="bg-[#8b98a5] p-3 rounded-full hover:bg-[#16f2b3] hover:scale-110 transition-all duration-300 text-gray-800 cursor-pointer"
                 size={48}

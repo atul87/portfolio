@@ -29,14 +29,13 @@ function Blog({ blogs = [] }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 lg:gap-8 xl:gap-10">
           {
             blogs.slice(0, 6).map((blog, i) => (
-              blog?.cover_image &&
               <BlogCard blog={blog} key={i} />
             ))
           }
         </div>
       ) : (
         <p className="text-center text-gray-300">
-          Blog posts are not connected yet. Explore the projects and profiles above for the latest work.
+          No blog posts are available yet. Explore the projects and profiles above for the latest work.
         </p>
       )}
 

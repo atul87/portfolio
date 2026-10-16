@@ -1,32 +1,32 @@
 export const experiences = [
   {
     id: 1,
-    title: "Team Leader",
-    company: "RoopRani project - led a 4-member frontend team",
-    duration: "(Jan 2024 - 2025)"
+    title: "Salesforce Development Intern",
+    company: "Astrea IT Services Pvt. Ltd. (Remote)",
+    duration: "(June 2026 - July 2026)"
   },
   {
     id: 2,
-    title: "Full-Stack Developer",
-    company: "Recycling E-commerce Platform - end-to-end web development",
-    duration: "(Jan 2024 - Jul 2024)"
+    title: "Machine Learning Engineer Intern",
+    company: "Zidio - Project FORESIGHT demand forecasting & inventory intelligence",
+    duration: "(3 Months)"
   },
   {
     id: 3,
     title: "IEEE Research Author",
-    company: "FGI-XAD paper at ISCS 2025 on explainable autonomous cyber defence",
-    duration: "(2025)"
+    company: "ISCS 2025 (FGI-XAD Cyber Defence) & SCEECS 2026 (Agentic AI Cloud)",
+    duration: "(2025 - 2026)"
   },
   {
     id: 4,
-    title: "2nd Runner-Up",
-    company: "Idea Sprint for CivicConnect",
+    title: "Second Runner-Up",
+    company: "Idea Sprint 2025 for MyCity Help Smart City Solution",
     duration: "(2025)"
   },
   {
     id: 5,
-    title: "AI/GenAI Builder",
-    company: "Participated in IIT Kanpur, AKTU, HCL, GUVI, and GDG Kanpur events",
-    duration: "(2025)"
+    title: "Team Leader",
+    company: "RoopRani project - led a 4-member frontend team",
+    duration: "(Jan 2024 - 2025)"
   }
 ]

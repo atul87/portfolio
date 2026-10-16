@@ -7,6 +7,10 @@ test("api endpoints respond with expected status", async ({ request }) => {
     const blogRes = await request.get("/blog");
     expect(blogRes.status()).toBe(200);
 
+    const articleRes = await request.get("/blog/competitive-programming-lessons-tcs-codevita");
+    expect(articleRes.status()).toBe(200);
+    await expect(articleRes).toBeOK();
+
     const dataRes = await request.get("/api/data");
     expect(dataRes.status()).toBe(200);
     const dataJson = await dataRes.json();
@@ -28,4 +32,13 @@ test("api endpoints respond with expected status", async ({ request }) => {
     expect(contactPost.status()).toBe(400);
     const postJson = await contactPost.json();
     expect(postJson.success).toBe(false);
+
+    // Test malformed JSON payload returns 400
+    const malformedPost = await request.post("/api/contact", {
+        headers: { "Content-Type": "application/json" },
+        data: "invalid-json{",
+    });
+    expect(malformedPost.status()).toBe(400);
+    const malformedJson = await malformedPost.json();
+    expect(malformedJson.message).toBe("Invalid JSON payload.");
 });

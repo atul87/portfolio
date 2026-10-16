@@ -6,7 +6,7 @@ export const projectsData = [
         tools: ["Python", "Flask", "MongoDB", "Socket.IO", "HTML", "CSS", "JavaScript", "PWA"],
         role: "Full-Stack Developer",
         code: "https://github.com/atul87/Flavour-Fleet-Premium-Food-Delivery-Platform",
-        demo: '',
+        demo: 'https://flavour-fleet-premium-food-delivery.vercel.app',
     },
     {
         id: 2,
@@ -15,7 +15,7 @@ export const projectsData = [
         tools: ["Flask", "JavaScript", "SQLite", "PostgreSQL", "Leaflet.js", "Chart.js", "Gemini AI", "PWA"],
         role: "Full-Stack Developer",
         code: "https://github.com/atul87/My-City-Help",
-        demo: '',
+        demo: 'https://my-city-help.vercel.app',
     },
     {
         id: 3,
@@ -24,7 +24,7 @@ export const projectsData = [
         tools: ["Python", "Flask", "Scikit-learn", "Pandas", "NumPy", "HTML", "CSS", "JavaScript"],
         code: "https://github.com/atul87/Crop-Recommendation-System",
         role: "ML Developer",
-        demo: '',
+        demo: 'https://crop-recommendation-system-bice.vercel.app',
     },
     {
         id: 4,
@@ -46,15 +46,6 @@ export const projectsData = [
     },
     {
         id: 6,
-        name: "Developer Profile README",
-        description: "A GitHub profile hub that summarizes my AI/ML, full-stack development focus, featured projects, skills, education, and collaboration links.",
-        tools: ["Markdown", "GitHub", "Technical Writing"],
-        code: "https://github.com/atul87/atul87",
-        demo: "https://github.com/atul87",
-        role: "Profile Maintainer",
-    },
-    {
-        id: 7,
         name: "AI-Driven House Price Predictor",
         description: "A machine learning project for estimating house prices from structured property features using regression workflows and model evaluation.",
         tools: ["Python", "Pandas", "NumPy", "Scikit-learn", "Machine Learning"],
@@ -63,13 +54,40 @@ export const projectsData = [
         role: "ML Developer",
     },
     {
-        id: 8,
+        id: 7,
         name: "Sentiment Analysis on Food Reviews",
         description: "A natural language processing project that classifies food review sentiment and extracts useful signals from customer feedback.",
         tools: ["Python", "NLP", "Pandas", "Scikit-learn", "Data Science"],
         code: '',
         demo: '',
         role: "Data Science Developer",
+    },
+    {
+        id: 8,
+        name: "FORESIGHT — Demand Forecasting & Inventory Intelligence",
+        description: "An AI-powered demand forecasting and inventory-management system that uses historical sales data and machine learning to predict demand and recommend inventory actions.",
+        tools: ["Python", "Machine Learning", "Forecasting", "HTML"],
+        code: "https://github.com/atul87/FORESIGHT",
+        demo: '',
+        role: "Machine Learning Engineer",
+    },
+    {
+        id: 9,
+        name: "YouTube Video Analyzer Agent",
+        description: "An AI agent that takes a YouTube URL, extracts a transcript, and uses an LLM to analyze content, summarize key points, and surface insights.",
+        tools: ["Python", "LLM", "AI Agent", "NLP"],
+        code: "https://github.com/atul87/youtube-video-analyzer-agent",
+        demo: '',
+        role: "AI Engineer",
+    },
+    {
+        id: 10,
+        name: "StyleForge Studio",
+        description: "A focused style-transfer workspace for blending a content image with a reference artwork, comparing results, and exporting a polished stylized image.",
+        tools: ["Computer Vision", "Style Transfer", "HTML"],
+        code: "https://github.com/atul87/StyleForge-Studio",
+        demo: '',
+        role: "AI Developer",
     }
 ];
 
