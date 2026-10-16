@@ -1,0 +1,6 @@
+# Explicit dependency build policy for pnpm 10.
+# sharp is permitted for Next.js image optimization; unused install scripts remain blocked.
+allowBuilds:
+  sharp: true
+  "@parcel/watcher": false
+  unrs-resolver: false
