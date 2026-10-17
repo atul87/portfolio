@@ -92,6 +92,9 @@ function Navbar() {
             <Link className="block px-4 py-2 no-underline outline-none hover:no-underline" href="/#research"><div className="text-sm text-white transition-colors duration-300 hover:text-pink-600">RESEARCH</div></Link>
           </li>
           <li>
+            <Link className="block px-4 py-2 no-underline outline-none hover:no-underline" href="/gallery"><div className="text-sm text-white transition-colors duration-300 hover:text-pink-600">GALLERY</div></Link>
+          </li>
+          <li>
             <Link className="block px-4 py-2 no-underline outline-none hover:no-underline" href="/#contact"><div className="text-sm text-[#16f2b3] font-medium transition-colors duration-300 hover:text-pink-600">CONTACT</div></Link>
           </li>
         </ul>
@@ -133,6 +136,9 @@ function Navbar() {
             </Link>
             <Link className="block py-3 no-underline outline-none hover:no-underline border-b border-[#1b2c68]" href="/#research" onClick={closeMenu}>
               <span className="text-sm text-white transition-colors duration-300 hover:text-pink-600">RESEARCH</span>
+            </Link>
+            <Link className="block py-3 no-underline outline-none hover:no-underline border-b border-[#1b2c68]" href="/gallery" onClick={closeMenu}>
+              <span className="text-sm text-white transition-colors duration-300 hover:text-pink-600">GALLERY</span>
             </Link>
             <Link className="block py-3 no-underline outline-none hover:no-underline" href="/#contact" onClick={closeMenu}>
               <span className="text-sm text-[#16f2b3] transition-colors duration-300 hover:text-pink-600">CONTACT</span>

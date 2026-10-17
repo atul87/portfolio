@@ -42,6 +42,7 @@ test("api endpoints respond with expected status", async ({ request }) => {
 
     // Contact route input validation
     const contactPost = await request.post("/api/contact", {
+        headers: { "x-forwarded-for": "10.0.1.1" },
         data: {
             name: "E2E Test",
             email: "invalid-email",
@@ -55,6 +56,7 @@ test("api endpoints respond with expected status", async ({ request }) => {
 
     // Missing field test
     const missingFieldsPost = await request.post("/api/contact", {
+        headers: { "x-forwarded-for": "10.0.1.2" },
         data: {
             name: "E2E Test",
         },
@@ -65,7 +67,10 @@ test("api endpoints respond with expected status", async ({ request }) => {
 
     // Malformed JSON payload test
     const malformedPost = await request.post("/api/contact", {
-        headers: { "Content-Type": "application/json" },
+        headers: {
+            "Content-Type": "application/json",
+            "x-forwarded-for": "10.0.1.3",
+        },
         data: "invalid-json{",
     });
     expect(malformedPost.status()).toBe(400);
@@ -74,6 +79,7 @@ test("api endpoints respond with expected status", async ({ request }) => {
 
     // Honeypot test: bots filling hidden 'website' field should be silently accepted with 200
     const honeypotPost = await request.post("/api/contact", {
+        headers: { "x-forwarded-for": "10.0.1.4" },
         data: {
             name: "Spam Bot",
             email: "bot@spamdomain.com",
@@ -85,6 +91,22 @@ test("api endpoints respond with expected status", async ({ request }) => {
     const honeypotJson = await honeypotPost.json();
     expect(honeypotJson.success).toBe(true);
     expect(honeypotJson.message).toBe("Message sent successfully!");
+
+    // Explicit Rate Limiter Test: 6 requests from the same IP
+    const rateLimitIp = "10.0.9.99";
+    for (let i = 0; i < 5; i++) {
+        await request.post("/api/contact", {
+            headers: { "x-forwarded-for": rateLimitIp },
+            data: { website: "honeypot" },
+        });
+    }
+    const rateLimitedRes = await request.post("/api/contact", {
+        headers: { "x-forwarded-for": rateLimitIp },
+        data: { website: "honeypot" },
+    });
+    expect(rateLimitedRes.status()).toBe(429);
+    const rateLimitedJson = await rateLimitedRes.json();
+    expect(rateLimitedJson.message).toBe("Too many requests. Try later.");
 
     // Security Headers check on production responses
     const headers = rootRes.headers();

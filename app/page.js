@@ -9,6 +9,8 @@ import StatsSection from "./components/homepage/stats";
 import Projects from "./components/homepage/projects";
 import ResearchSection from "./components/homepage/research";
 import Skills from "./components/homepage/skills";
+import HobbiesSection from "./components/homepage/hobbies";
+import GallerySection from "./components/homepage/gallery";
 import { localBlogs } from "@/utils/data/local-blogs";
 
 async function getData() {
@@ -51,6 +53,8 @@ export default async function Home() {
       <Projects />
       <ResearchSection />
       <Education />
+      <HobbiesSection />
+      <GallerySection />
       <Blog blogs={blogs} />
       <ContactSection />
     </div>

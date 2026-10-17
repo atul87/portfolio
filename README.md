@@ -14,7 +14,7 @@
   A high-performance, full-stack portfolio and technical showcase engineered with Next.js App Router, Turbopack, and Tailwind CSS. Built to highlight production AI/ML architectures, peer-reviewed research, full-stack platforms, and technical writing.
 </p>
 
-[**🌐 Explore Live Portfolio**](https://portfolio-five-black-83.vercel.app/) · [**📄 Read IEEE Paper**](https://doi.org/10.1109/ISCS69371.2025.11386415) · [**📝 Technical Blog**](https://portfolio-five-black-83.vercel.app/blog) · [**📬 Get in Touch**](https://portfolio-five-black-83.vercel.app/#contact)
+[**🌐 Explore Live Portfolio**](https://portfolio-five-black-83.vercel.app/) · [**📸 Visual Log & Gallery**](https://portfolio-five-black-83.vercel.app/gallery) · [**📄 Read IEEE Paper**](https://doi.org/10.1109/ISCS69371.2025.11386415) · [**📝 Technical Blog**](https://portfolio-five-black-83.vercel.app/blog) · [**📬 Get in Touch**](https://portfolio-five-black-83.vercel.app/#contact)
 
 ---
 
@@ -76,13 +76,18 @@ This portfolio represents more than a static resume—it is an **enterprise-grad
 - **DOI:** [`10.1109/ISCS69371.2025.11386415`](https://doi.org/10.1109/ISCS69371.2025.11386415)
 - **Focus:** Decentralized anomaly detection combining Federated Learning, Deep Reinforcement Learning, and SHAP explainability on industrial SCADA/IoT networks.
 
-### 3. 📝 Interactive Technical Blog & Knowledge Base
+### 3. 📸 Interactive Visual Log & Gallery (/gallery)
+- Dedicated event gallery showcasing stage ceremonies, hackathon participation, conference presentations, and campus lab sessions.
+- Interactive category filtering pills: `ALL EVENTS`, `HACKATHONS`, `INTERNATIONAL CONFERENCE`, `IIT WORKSHOPS`, `RESEARCH`, `SMART INDIA HACKATHON`, `LOGIC LEAGUE CLUB`, `ACHIEVEMENTS`.
+- Full-screen modal lightbox preview with event venue, dates, metadata tags, and direct verified PDF credential links.
+
+### 4. 📝 Interactive Technical Blog & Knowledge Base
 - Pre-rendered static routes (`SSG`) for high-speed article delivery.
 - Real-time client-side search engine filtering articles by keyword, title, and topic.
 - Dynamic category pills with live article count badges (`AI & Cyber Defence`, `Civic Tech`, `Competitive Coding`, `Math & Logic`).
 - Single-article reader with syntax formatting, blockquotes, author attribution card, and adjacent article navigation.
 
-### 4. 🛡️ Production Security & Spam Protection
+### 5. 🛡️ Production Security & Spam Protection
 - **Honeypot Trap:** Hidden field (`#contact-website`) intercepts automated bots silently with zero server resource leakage.
 - **Input Sanitization & Escaping:** Regex email validation, payload type checks, and HTML entity escaping prevent XSS and injection attacks.
 - **HTTP Security Headers:** Configured in `next.config.js`:
@@ -106,6 +111,9 @@ e:\Portfolio
 │   │   ├── [slug]/page.jsx         # SSG static article reader & metadata generator
 │   │   ├── blog-list-client.jsx    # Interactive client-side search & category filter
 │   │   └── page.js                 # /blog root directory with SEO metadata
+│   ├── gallery/
+│   │   ├── gallery-client.jsx      # Interactive event visual log with filters & modal
+│   │   └── page.jsx                # /gallery route with metadata & canonical URL
 │   ├── components/
 │   │   ├── homepage/
 │   │   │   ├── about/              # Profile summary & personal introduction
@@ -113,10 +121,12 @@ e:\Portfolio
 │   │   │   ├── contact/            # Secured contact form & social channels
 │   │   │   ├── education/          # Academic history & technical certifications
 │   │   │   ├── experience/         # Roles with substantiated outcome bullets
+│   │   │   ├── gallery/            # Homepage visual log & event glimpses preview
 │   │   │   ├── hero-section/       # Animated code editor & standardized resume CTA
+│   │   │   ├── hobbies/            # Curated personal interests & continuous learning cards
 │   │   │   ├── projects/           # macOS terminal cards, copy button & live pulse
 │   │   │   ├── research/           # Dedicated IEEE publications section & DOI links
-│   │   │   ├── skills/             # Interactive technology marquee
+│   │   │   ├── skills/             # Technical marquee & responsive Soft Skills showcase
 │   │   │   └── stats/              # Key credibility metrics counter
 │   │   ├── footer.jsx              # Cross-platform links (GitHub, LinkedIn, GFG, Code360)
 │   │   └── navbar.jsx              # Accessible navigation with mobile drawer

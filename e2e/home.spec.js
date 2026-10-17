@@ -20,6 +20,29 @@ test("home page renders key sections and stats", async ({ page }) => {
     await expect(page.getByText("Research & Publications")).toBeVisible();
     await expect(page.getByText("Federated Generative Intelligence").first()).toBeVisible();
 
+    // Verify Soft Skills Section
+    const softSkillsSection = page.locator("#soft-skills");
+    await expect(softSkillsSection).toBeVisible();
+    await expect(softSkillsSection.getByRole("heading", { name: "Soft Skills" })).toBeVisible();
+    await expect(softSkillsSection.getByText("Leadership", { exact: true })).toBeVisible();
+    await expect(softSkillsSection.getByText("Team Collaboration", { exact: true })).toBeVisible();
+    await expect(softSkillsSection.getByText("Public Speaking", { exact: true })).toBeVisible();
+    await expect(softSkillsSection.getByText("Problem-Solving", { exact: true })).toBeVisible();
+    await expect(softSkillsSection.getByText("Time Management", { exact: true })).toBeVisible();
+    await expect(softSkillsSection.getByText("Event Coordination", { exact: true })).toBeVisible();
+    await expect(softSkillsSection.getByText("Critical Thinking", { exact: true })).toBeVisible();
+    await expect(softSkillsSection.getByText("Adaptability", { exact: true })).toBeVisible();
+
+    // Verify Hobbies Section
+    const hobbiesSection = page.locator("#hobbies");
+    await expect(hobbiesSection).toBeVisible();
+    await expect(hobbiesSection.getByText("Hobbies", { exact: true })).toBeVisible();
+    await expect(hobbiesSection.getByText("Browsing Technology")).toBeVisible();
+    await expect(hobbiesSection.getByText("Current Affairs & News")).toBeVisible();
+    await expect(hobbiesSection.getByText("Yoga")).toBeVisible();
+    await expect(hobbiesSection.getByText("Reading Books")).toBeVisible();
+    await expect(hobbiesSection.getByText("Problem Solving")).toBeVisible();
+
     // Verify Contact Section
     await expect(page.locator("#contact")).toBeVisible();
 });
