@@ -28,7 +28,7 @@ const ScrollToTop = () => {
 
   return (
     <button
-      className="fixed bottom-8 right-6 z-50 flex items-center rounded-full bg-gradient-to-r from-pink-500 to-violet-600 p-4 hover:scale-110 shadow-lg shadow-violet-900/50 transition-all duration-300 ease-out cursor-pointer text-white"
+      className="fixed bottom-22 right-6 z-40 flex items-center rounded-full bg-gradient-to-r from-pink-500 to-violet-600 p-3.5 hover:scale-110 shadow-lg shadow-violet-900/50 transition-all duration-300 ease-out cursor-pointer text-white"
       onClick={onClickBtn}
       aria-label="Scroll back to top"
     >
