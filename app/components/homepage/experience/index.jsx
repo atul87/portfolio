@@ -6,6 +6,7 @@ import { BsPersonWorkspace } from "react-icons/bs";
 import experience from '../../../assets/lottie/code.json';
 import AnimationLottie from "../../helper/animation-lottie";
 import GlowCard from "../../helper/glow-card";
+import PressCoverageCard from "./press-coverage";
 
 function Experience() {
   return (
@@ -30,11 +31,14 @@ function Experience() {
       </div>
 
       <div className="py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
-          <div className="flex justify-center items-start">
-            <div className="w-full h-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+          <div className="flex flex-col items-center justify-start gap-6 lg:gap-8 w-full">
+            <div className="w-full max-w-md lg:max-w-lg flex justify-center">
               <AnimationLottie animationPath={experience} />
             </div>
+
+            {/* National Media Coverage Feature (Hindustan Daily) */}
+            <PressCoverageCard />
           </div>
 
           <div>

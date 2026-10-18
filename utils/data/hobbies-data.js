@@ -29,4 +29,10 @@ export const hobbiesData = [
     description: "Enjoy tackling puzzles and logical challenges.",
     icon: "🧩",
   },
+  {
+    id: 6,
+    title: "Traveling",
+    description: "Exploring new places, scenic cultures, and gaining fresh perspectives.",
+    icon: "✈️",
+  },
 ];

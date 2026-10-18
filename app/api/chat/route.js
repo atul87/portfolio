@@ -7,6 +7,7 @@ import { experiences } from "@/utils/data/experience";
 import { educations } from "@/utils/data/educations";
 import { skillsData } from "@/utils/data/skills";
 import { galleryData } from "@/utils/data/gallery-data";
+import { hobbiesData } from "@/utils/data/hobbies-data";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -80,6 +81,7 @@ function getPortfolioContext() {
     linkedIn: personalData.linkedIn,
     resume: personalData.resume,
     email: personalData.email,
+    researchGate: personalData.researchGate,
   };
 
   const research = [
@@ -113,6 +115,7 @@ function getPortfolioContext() {
     experience: experiences,
     education: educations,
     skills: skillsData,
+    hobbies: hobbiesData,
     eventsAndHackathons: galleryData,
   });
 }

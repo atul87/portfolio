@@ -27,10 +27,11 @@ function ContactForm() {
     if (!userInput.email || !userInput.message || !userInput.name) {
       setError((current) => ({ ...current, required: true }));
       return;
-    } else if (error.email) {
+    } else if (!isValidEmail(userInput.email)) {
+      setError((current) => ({ ...current, email: true }));
       return;
     } else {
-      setError((current) => ({ ...current, required: false }));
+      setError({ email: false, required: false });
     };
 
     try {
@@ -57,7 +58,7 @@ function ContactForm() {
 
   return (
     <div>
-      <ToastContainer />
+      <ToastContainer position="top-right" autoClose={5000} theme="dark" />
       <p className="font-medium mb-5 text-[#16f2b3] text-xl uppercase">Get in touch</p>
       <div className="max-w-3xl text-white rounded-lg border border-[#464c6a] p-3 lg:p-5">
         <p className="text-sm text-[#d3d8e8]">{"If you have any questions or concerns, please don't hesitate to contact me. I am open to any work opportunities that align with my skills and interests."}</p>

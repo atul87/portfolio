@@ -2,7 +2,9 @@
 import Link from 'next/link';
 import { FaExternalLinkAlt, FaAward } from 'react-icons/fa';
 import { MdOutlineScience, MdMenuBook } from 'react-icons/md';
+import { SiResearchgate } from 'react-icons/si';
 import { researchData } from '@/utils/data/research-data';
+import { personalData } from '@/utils/data/personal-data';
 
 export default function ResearchSection() {
   return (
@@ -85,6 +87,21 @@ export default function ResearchSection() {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* ResearchGate Profile Action */}
+      <div className="flex justify-center mt-8 lg:mt-10">
+        <Link
+          href={personalData.researchGate}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-[#101435] border border-[#1f295c] hover:border-[#00ccbb] text-gray-200 hover:text-white transition-all shadow-xl hover:shadow-[#00ccbb]/20 font-mono text-xs sm:text-sm font-semibold group cursor-pointer"
+          aria-label="ResearchGate Profile - Atul"
+        >
+          <SiResearchgate className="text-[#00ccbb] group-hover:scale-110 transition-transform" size={22} />
+          <span>View Full Research Profile on ResearchGate</span>
+          <FaExternalLinkAlt size={12} className="text-gray-400 group-hover:text-white transition-colors" />
+        </Link>
       </div>
     </div>
   );

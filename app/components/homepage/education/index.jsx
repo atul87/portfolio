@@ -5,6 +5,7 @@ import { BsPersonWorkspace } from "react-icons/bs";
 import lottieFile from '../../../assets/lottie/study.json';
 import AnimationLottie from "../../helper/animation-lottie";
 import GlowCard from "../../helper/glow-card";
+import KanpurMapCard from "./kanpur-map";
 
 function Education() {
   return (
@@ -34,11 +35,16 @@ function Education() {
       </div>
 
       <div className="py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
-          <div className="flex justify-center items-start">
-            <div className="w-3/4 h-3/4">
-              <AnimationLottie animationPath={lottieFile} />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+          <div className="flex flex-col items-center justify-start gap-6 lg:gap-8 w-full">
+            <div className="w-full max-w-md lg:max-w-lg flex justify-center">
+              <div className="w-3/4 h-3/4">
+                <AnimationLottie animationPath={lottieFile} />
+              </div>
             </div>
+
+            {/* Google Map Kanpur Residence & Base Location */}
+            <KanpurMapCard />
           </div>
 
           <div>

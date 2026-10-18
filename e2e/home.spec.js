@@ -42,6 +42,7 @@ test("home page renders key sections and stats", async ({ page }) => {
     await expect(hobbiesSection.getByText("Yoga")).toBeVisible();
     await expect(hobbiesSection.getByText("Reading Books")).toBeVisible();
     await expect(hobbiesSection.getByText("Problem Solving")).toBeVisible();
+    await expect(hobbiesSection.getByText("Traveling")).toBeVisible();
 
     // Verify Contact Section
     await expect(page.locator("#contact")).toBeVisible();
@@ -121,3 +122,65 @@ test("404 page renders and navigates back home", async ({ page }) => {
     await homeBtn.click();
     await expect(page).toHaveURL("/");
 });
+
+test("experience section displays Hindustan press coverage card and opens reading modal", async ({ page }) => {
+    await page.goto("/#experience");
+
+    const experienceSection = page.locator("#experience");
+    await expect(experienceSection).toBeVisible();
+
+    // Verify press coverage card
+    await expect(experienceSection.getByText("National Press Coverage")).toBeVisible();
+    await expect(experienceSection.getByText("Hindustan Daily (हिन्दुस्तान)")).toBeVisible();
+    await expect(experienceSection.getByRole("img", { name: /Hindustan Newspaper Coverage/i })).toBeVisible();
+
+    // Click "Enlarge Clipping" button
+    const enlargeBtn = experienceSection.getByRole("button", { name: /Enlarge Clipping/i });
+    await expect(enlargeBtn).toBeVisible();
+    await enlargeBtn.click();
+
+    // Verify reading modal dialog
+    const modal = page.getByRole("dialog", { name: /Hindustan Newspaper Coverage/i });
+    await expect(modal).toBeVisible();
+    await expect(modal.getByText("एलेनहाउस के डिफेंस से जुड़े तीन शोधपत्र प्रकाशित होंगे")).toBeVisible();
+    await expect(modal.getByRole("link", { name: /View Official IEEE Publication/i })).toBeVisible();
+
+    // Close on Escape key
+    await page.keyboard.press("Escape");
+    await expect(modal).not.toBeVisible();
+});
+
+test("education section displays Kanpur Google Maps iframe card with address details and actions", async ({ page, context }) => {
+    await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+    await page.goto("/#education");
+
+    const educationSection = page.locator("#education");
+    await expect(educationSection).toBeVisible();
+
+    // Verify map card header and address text
+    await expect(educationSection.getByText("Location & Native Base")).toBeVisible();
+    await expect(educationSection.getByText("1735/02, Awas Vikas, Hanspuram")).toBeVisible();
+    await expect(educationSection.getByText(/Naubasta, Kanpur, Uttar Pradesh/)).toBeVisible();
+
+    // Verify Google Maps iframe
+    const mapIframe = educationSection.locator("iframe");
+    await expect(mapIframe).toBeVisible();
+    await expect(mapIframe).toHaveAttribute("src", /maps\.google\.com\/maps\?q=1735%2F02/);
+
+    // Verify copy button feedback
+    const copyBtn = educationSection.getByRole("button", { name: /Copy/i });
+    await expect(copyBtn).toBeVisible();
+    await copyBtn.click();
+    await expect(educationSection.getByText("Copied!")).toBeVisible();
+
+    // Verify external links
+    const openMapsLink = educationSection.getByRole("link", { name: /Open in Maps/i });
+    await expect(openMapsLink).toBeVisible();
+    await expect(openMapsLink).toHaveAttribute("href", /google\.com\/maps\/search/);
+
+    const directionsLink = educationSection.getByRole("link", { name: /Get Directions/i });
+    await expect(directionsLink).toBeVisible();
+    await expect(directionsLink).toHaveAttribute("href", /google\.com\/maps\/dir/);
+});
+
+

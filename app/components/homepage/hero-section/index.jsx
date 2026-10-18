@@ -7,7 +7,7 @@ import { BsGithub, BsLinkedin } from "react-icons/bs";
 import { FaLaptopCode } from "react-icons/fa";
 import { MdDownload } from "react-icons/md";
 import { RiContactsFill } from "react-icons/ri";
-import { SiGeeksforgeeks, SiLeetcode } from "react-icons/si";
+import { SiGeeksforgeeks, SiLeetcode, SiResearchgate } from "react-icons/si";
 
 function HeroSection() {
   return (
@@ -75,6 +75,15 @@ function HeroSection() {
               aria-label="Naukri Code360 Profile"
             >
               <FaLaptopCode size={30} />
+            </Link>
+            <Link
+              href={personalData.researchGate}
+              target='_blank'
+              rel="noopener noreferrer"
+              className="transition-all text-pink-500 hover:scale-125 duration-300"
+              aria-label="ResearchGate Profile"
+            >
+              <SiResearchgate size={30} />
             </Link>
           </div>
 

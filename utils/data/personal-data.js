@@ -13,6 +13,7 @@ export const personalData = {
   leetcode: "https://leetcode.com/u/Atul9876/",
   code360: "https://www.naukri.com/code360/profile/AtulCodeWizard",
   geeksforgeeks: "https://www.geeksforgeeks.org/profile/atul8756",
+  researchGate: "https://www.researchgate.net/profile/Atul-Atul-10?ev=hdr_xprf",
   devUsername: "",
   resume: "/resume.pdf"
 }

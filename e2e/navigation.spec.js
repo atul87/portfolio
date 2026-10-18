@@ -73,4 +73,30 @@ test.describe("Navigation and External Links", () => {
     await expect(resumeBtn).toBeVisible();
     await expect(resumeBtn).toHaveAttribute("download", "Atul_Verma_AI_ML_Resume.pdf");
   });
+
+  test("ResearchGate profile links exist and point to valid profile", async ({ page }) => {
+    await page.goto("/");
+
+    // Hero Section
+    const rgHero = page.locator('a[aria-label="ResearchGate Profile"]').first();
+    await expect(rgHero).toBeVisible();
+    await expect(rgHero).toHaveAttribute(
+      "href",
+      "https://www.researchgate.net/profile/Atul-Atul-10?ev=hdr_xprf"
+    );
+    await expect(rgHero).toHaveAttribute("target", "_blank");
+
+    // Research Section
+    const rgResearch = page.locator('a[aria-label="ResearchGate Profile - Atul"]');
+    await expect(rgResearch).toBeVisible();
+    await expect(rgResearch).toHaveAttribute(
+      "href",
+      "https://www.researchgate.net/profile/Atul-Atul-10?ev=hdr_xprf"
+    );
+
+    // Footer
+    const rgFooter = page.locator('footer a[aria-label="ResearchGate Profile"], div.relative a[aria-label="ResearchGate Profile"]').first();
+    await expect(rgFooter).toBeVisible();
+  });
 });
+

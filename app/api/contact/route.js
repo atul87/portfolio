@@ -58,17 +58,21 @@ async function isRateLimited(ip) {
   return false;
 }
 
-// Create and configure Nodemailer transporter
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.EMAIL_ADDRESS,
-    pass: process.env.GMAIL_PASSKEY,
-  },
-});
+// Helper function to create Nodemailer transporter dynamically
+function getTransporter() {
+  const user = process.env.EMAIL_ADDRESS;
+  const pass = (process.env.GMAIL_PASSKEY || '').replace(/\s+/g, '');
+  return nodemailer.createTransport({
+    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
+    auth: {
+      user,
+      pass,
+    },
+  });
+}
 
 // Helper function to send a message via Telegram
 async function sendTelegramMessage(token, chat_id, message) {
@@ -117,10 +121,17 @@ const generateEmailTemplate = (name, email, userMessage) => `
 // Helper function to send an email via Nodemailer
 async function sendEmail(payload, message) {
   const { name, email, message: userMessage } = payload;
+  const user = process.env.EMAIL_ADDRESS;
+  const pass = (process.env.GMAIL_PASSKEY || '').replace(/\s+/g, '');
 
+  if (!user || !pass) {
+    return { ok: false, error: 'Email sender credentials are missing.' };
+  }
+
+  const transporter = getTransporter();
   const mailOptions = {
-    from: `Portfolio Contact <${process.env.EMAIL_ADDRESS}>`,
-    to: process.env.EMAIL_ADDRESS,
+    from: `Portfolio Contact <${user}>`,
+    to: user,
     subject: `New Message From ${name}`,
     text: message,
     html: generateEmailTemplate(name, email, userMessage),
@@ -129,10 +140,10 @@ async function sendEmail(payload, message) {
 
   try {
     await transporter.sendMail(mailOptions);
-    return true;
+    return { ok: true };
   } catch (error) {
     console.error('Error while sending email:', error.message);
-    return false;
+    return { ok: false, error: error.message };
   }
 };
 
@@ -217,7 +228,7 @@ export async function POST(request) {
     const message = `New message from ${name}\n\nEmail: ${email}\n\nMessage:\n\n${userMessage}\n\n`;
 
     // Email is the primary channel.
-    const emailSuccess = await sendEmail(payload, message);
+    const emailResult = await sendEmail(payload, message);
 
     // Telegram is optional and should not block email delivery.
     let telegramSuccess = null;
@@ -225,7 +236,7 @@ export async function POST(request) {
       telegramSuccess = await sendTelegramMessage(token, chat_id, message);
     }
 
-    if (emailSuccess) {
+    if (emailResult.ok) {
       return NextResponse.json({
         success: true,
         message: telegramSuccess === false
@@ -234,9 +245,17 @@ export async function POST(request) {
       }, { status: 200 });
     }
 
+    const isBadCredentials = emailResult.error && (
+      emailResult.error.includes('535') || 
+      emailResult.error.includes('BadCredentials') ||
+      emailResult.error.includes('Username and Password not accepted')
+    );
+
     return NextResponse.json({
       success: false,
-      message: 'Failed to send email.',
+      message: isBadCredentials
+        ? 'Gmail authentication failed: App Password was rejected by Google. Please verify GMAIL_PASSKEY in .env.local.'
+        : 'Failed to send email. Please try again later.',
     }, { status: 500 });
   } catch (error) {
     console.error('API Error:', error.message);

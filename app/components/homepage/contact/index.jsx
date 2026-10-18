@@ -7,7 +7,7 @@ import { CiLocationOn } from "react-icons/ci";
 import { FaLaptopCode } from 'react-icons/fa';
 import { IoLogoGithub, IoMdCall } from "react-icons/io";
 import { MdAlternateEmail } from "react-icons/md";
-import { SiGeeksforgeeks, SiLeetcode } from "react-icons/si";
+import { SiGeeksforgeeks, SiLeetcode, SiResearchgate } from "react-icons/si";
 
 const ContactForm = dynamic(() => import('./contact-form'), {
   loading: () => (
@@ -96,6 +96,12 @@ function ContactSection() {
             </Link>
             <Link target="_blank" rel="noopener noreferrer" href={personalData.code360} aria-label="Naukri Code360 Profile">
               <FaLaptopCode
+                className="bg-[#8b98a5] p-3 rounded-full hover:bg-[#16f2b3] hover:scale-110 transition-all duration-300 text-gray-800 cursor-pointer"
+                size={48}
+              />
+            </Link>
+            <Link target="_blank" rel="noopener noreferrer" href={personalData.researchGate} aria-label="ResearchGate Profile">
+              <SiResearchgate
                 className="bg-[#8b98a5] p-3 rounded-full hover:bg-[#16f2b3] hover:scale-110 transition-all duration-300 text-gray-800 cursor-pointer"
                 size={48}
               />

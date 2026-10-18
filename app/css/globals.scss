@@ -11,6 +11,13 @@
   }
 }
 
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background-color: #0d1224;

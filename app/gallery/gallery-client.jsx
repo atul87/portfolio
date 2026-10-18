@@ -90,7 +90,7 @@ export default function GalleryClient() {
 
       {/* Gallery Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-        {filteredItems.map((item) => (
+        {filteredItems.map((item, index) => (
           <div
             key={item.id}
             onClick={() => setActiveModalItem(item)}
@@ -105,6 +105,7 @@ export default function GalleryClient() {
                 src={item.image}
                 alt={item.title}
                 fill
+                priority={index < 2}
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
               />

@@ -230,6 +230,7 @@ npm run lint
 | **GeeksforGeeks** | [@atul8756](https://www.geeksforgeeks.org/profile/atul8756) | Data Structures & Algorithms Practice |
 | **LeetCode** | [@Atul9876](https://leetcode.com/u/Atul9876/) | Competitive Problem Solving |
 | **Naukri Code360** | [@AtulCodeWizard](https://www.naukri.com/code360/profile/AtulCodeWizard) | Algorithmic Problem Solving |
+| **ResearchGate** | [@Atul-Atul-10](https://www.researchgate.net/profile/Atul-Atul-10?ev=hdr_xprf) | Peer-Reviewed Research Publications & Academic Network |
 | **IEEE Xplore** | [DOI: 10.1109/ISCS69371.2025.11386415](https://doi.org/10.1109/ISCS69371.2025.11386415) | Academic Research Publications |
 
 </div>
