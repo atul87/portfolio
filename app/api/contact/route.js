@@ -254,7 +254,7 @@ export async function POST(request) {
     return NextResponse.json({
       success: false,
       message: isBadCredentials
-        ? 'Gmail authentication failed: App Password was rejected by Google. Please verify GMAIL_PASSKEY in .env.local.'
+        ? 'Gmail rejected the configured App Password. Update GMAIL_PASSKEY in Vercel Project Settings → Environment Variables for Production, then redeploy. Do not rely on .env.local for production.'
         : 'Failed to send email. Please try again later.',
     }, { status: 500 });
   } catch (error) {
