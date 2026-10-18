@@ -130,6 +130,10 @@ const Projects = () => {
               id={`sticky-card-${index + 1}`}
               key={project.id || index}
               className="sticky-card w-full mx-auto max-w-2xl sticky"
+              style={{
+                top: `calc(4.5rem + ${index * 12}px)`,
+                zIndex: index + 10,
+              }}
             >
               <div className="box-border flex items-center justify-center rounded shadow-[0_0_30px_0_rgba(0,0,0,0.3)] transition-all duration-[0.5s]">
                 <ProjectCard project={project} />
