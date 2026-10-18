@@ -177,7 +177,7 @@ UPSTASH_REDIS_REST_TOKEN=your_upstash_redis_token
 NEXT_PUBLIC_APP_URL=https://portfolio-five-black-83.vercel.app
 ```
 
-**Vercel production setup:** The production `EMAIL_ADDRESS` is configured as `atulverma15704@gmail.com`. In Vercel **Settings → Environment Variables**, add `GMAIL_PASSKEY` with the **Production** environment selected. Use a Gmail App Password, not your normal account password. Save it and redeploy. Keep credentials in Vercel's environment-variable settings; never commit them to Git or paste them into chat. Telegram variables are optional.
+**Vercel production setup:** Gmail SMTP credentials must be configured on Vercel, not just in local `.env.local`. In **Settings → Environment Variables**, set `EMAIL_ADDRESS` to the Gmail account and `GMAIL_PASSKEY` to a current 16-character Google App Password, with the **Production** environment selected. Remove spaces from the App Password if necessary (the API also normalizes them). If Google reports `535` / `BadCredentials`, generate a fresh App Password in the Google Account with 2-Step Verification enabled, replace `GMAIL_PASSKEY` in Vercel, then redeploy. Never commit secrets to Git or paste them into chat. Telegram variables are optional.
 
 
 ### 3. Run Development Server
