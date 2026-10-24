@@ -181,6 +181,31 @@ test("education section displays Kanpur Google Maps iframe card with address det
     const directionsLink = educationSection.getByRole("link", { name: /Get Directions/i });
     await expect(directionsLink).toBeVisible();
     await expect(directionsLink).toHaveAttribute("href", /google\.com\/maps\/dir/);
+
+    // Verify updated student-status badge
+    await expect(educationSection.getByText(/Final-Year B\.Tech CSE/)).toBeVisible();
+});
+
+test("hero section renders updated coder skills and about me bio", async ({ page }) => {
+    await page.goto("/");
+
+    // Verify About Me text
+    const aboutSection = page.locator("#about");
+    await expect(aboutSection.getByText(/Final-year B\.Tech Computer Science student graduating in 2027/)).toBeVisible();
+
+    // Verify Hero terminal coder stack
+    await expect(page.locator("code").filter({ hasText: "coder" }).first()).toBeVisible();
+    await expect(page.getByText("Multi-Agent Systems")).toBeVisible();
+    await expect(page.getByText("Generative AI").first()).toBeVisible();
+    await expect(page.getByText("FastAPI")).toBeVisible();
+    await expect(page.getByText("RAG", { exact: true })).toBeVisible();
+    await expect(page.getByText("XGBoost").first()).toBeVisible();
+
+    // Verify FORESIGHT project card tools
+    const projectCard = page.locator("#projects");
+    await expect(projectCard.getByText("project_1.ts")).toBeVisible();
+    await expect(projectCard.getByText("Time-Series", { exact: true })).toBeVisible();
+    await expect(projectCard.getByText("Scikit-learn").first()).toBeVisible();
 });
 
 

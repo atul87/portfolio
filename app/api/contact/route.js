@@ -128,14 +128,18 @@ async function sendEmail(payload, message) {
     return { ok: false, error: 'Email sender credentials are missing.' };
   }
 
+  // Sanitize against SMTP CRLF injection
+  const cleanName = String(name || '').replace(/[\r\n]/g, ' ').trim();
+  const cleanEmail = String(email || '').replace(/[\r\n]/g, '').trim();
+
   const transporter = getTransporter();
   const mailOptions = {
     from: `Portfolio Contact <${user}>`,
     to: user,
-    subject: `New Message From ${name}`,
+    subject: `New Message From ${cleanName}`,
     text: message,
-    html: generateEmailTemplate(name, email, userMessage),
-    replyTo: email,
+    html: generateEmailTemplate(cleanName, cleanEmail, userMessage),
+    replyTo: cleanEmail,
   };
 
   try {
@@ -204,14 +208,25 @@ export async function POST(request) {
       }, { status: 400 });
     }
 
-    if (name.length > 100 || email.length > 100 || userMessage.length > 2000) {
+    // Strip carriage returns and line feeds to prevent header injection
+    const cleanName = name.replace(/[\r\n]/g, ' ').trim();
+    const cleanEmail = email.replace(/[\r\n]/g, '').trim();
+
+    if (!cleanName) {
+      return NextResponse.json({
+        success: false,
+        message: 'Name, email, and message are required.',
+      }, { status: 400 });
+    }
+
+    if (cleanName.length > 100 || cleanEmail.length > 100 || userMessage.length > 2000) {
       return NextResponse.json({
         success: false,
         message: 'Input exceeds maximum allowed length.',
       }, { status: 400 });
     }
 
-    if (!isValidEmail(email)) {
+    if (!isValidEmail(cleanEmail)) {
       return NextResponse.json({
         success: false,
         message: 'Please provide a valid email address.',
@@ -225,10 +240,10 @@ export async function POST(request) {
       }, { status: 400 });
     }
 
-    const message = `New message from ${name}\n\nEmail: ${email}\n\nMessage:\n\n${userMessage}\n\n`;
+    const message = `New message from ${cleanName}\n\nEmail: ${cleanEmail}\n\nMessage:\n\n${userMessage}\n\n`;
 
     // Email is the primary channel.
-    const emailResult = await sendEmail(payload, message);
+    const emailResult = await sendEmail({ name: cleanName, email: cleanEmail, message: userMessage }, message);
 
     // Telegram is optional and should not block email delivery.
     let telegramSuccess = null;

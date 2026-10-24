@@ -112,7 +112,7 @@ export default function KanpurMapCard() {
             📍 Naubasta, Kanpur
           </span>
           <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#161d4a] text-[#16f2b3] border border-[#222d6e]">
-            🎓 Allenhouse Institute Alum
+            🎓 Final-Year B.Tech CSE (&apos;27)
           </span>
           <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#161d4a] text-gray-300 border border-[#222d6e]">
             🌐 Relocation / Remote Ready

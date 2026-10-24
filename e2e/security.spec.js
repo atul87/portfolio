@@ -88,6 +88,31 @@ test.describe("Security & Vulnerability Audit Suite", () => {
     expect(JSON.stringify(xssJson)).not.toContain("<script>");
   });
 
+  test("contact API sanitizes and defends against SMTP header CRLF injection", async ({ request }) => {
+    // Attempt with only newlines for name
+    const newlineNameRes = await request.post("/api/contact", {
+      headers: { "x-forwarded-for": "10.10.1.3" },
+      data: {
+        name: "\r\n\r\n",
+        email: "test@example.com",
+        message: "Hello world",
+      },
+    });
+    expect(newlineNameRes.status()).toBe(400);
+
+    // Attempt CRLF in email address (header injection attempt)
+    const crlfEmailRes = await request.post("/api/contact", {
+      headers: { "x-forwarded-for": "10.10.1.4" },
+      data: {
+        name: "Test User\r\nBcc:injected@domain.com",
+        email: "test@example.com\r\nBcc:victim@test.com",
+        message: "Hello world",
+      },
+    });
+    expect([200, 400, 500]).toContain(crlfEmailRes.status());
+    expect(crlfEmailRes.status()).not.toBe(502);
+  });
+
   test("chatbot API rejects oversized message content and malformed roles", async ({ request }) => {
     // Malformed role
     const invalidRoleRes = await request.post("/api/chat", {

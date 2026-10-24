@@ -4,7 +4,7 @@ test.describe("Gallery & Visual Log Suite", () => {
     test("gallery page renders header, category pills, and responsive items", async ({ page }) => {
         await page.goto("/gallery");
 
-        // Verify Header elements from reference screenshot
+        // Verify Header elements
         await expect(page.getByText("(GALLERY)")).toBeVisible();
         await expect(page.getByRole("heading", { name: "Visual log" })).toBeVisible();
         await expect(page.getByText("Hackathons, research work and club events — grouped by occasion.")).toBeVisible();
@@ -12,18 +12,34 @@ test.describe("Gallery & Visual Log Suite", () => {
         // Verify Category Pills
         const allEventsBtn = page.getByRole("button", { name: /ALL EVENTS/ });
         await expect(allEventsBtn).toBeVisible();
+        const certsBtn = page.getByRole("button", { name: /CERTIFICATIONS/ });
+        await expect(certsBtn).toBeVisible();
+        const achievementsBtn = page.getByRole("button", { name: /ACHIEVEMENTS/ });
+        await expect(achievementsBtn).toBeVisible();
         const hackathonsBtn = page.getByRole("button", { name: /HACKATHONS/ });
         await expect(hackathonsBtn).toBeVisible();
         const confBtn = page.getByRole("button", { name: /INTERNATIONAL CONFERENCE/ });
         await expect(confBtn).toBeVisible();
 
-        // Check initial records count (10 unique events)
-        await expect(page.getByText(/Showing 10 of 10 records/)).toBeVisible();
+        // Check initial records count (23 total records)
+        await expect(page.getByText(/Showing 23 of 23 records/)).toBeVisible();
 
-        // Filter by HACKATHONS (2 unique events)
+        // Filter by CERTIFICATIONS (10 items)
+        await certsBtn.click();
+        await expect(page.getByText("Oracle Certified Foundations Associate — Agentic AI")).toBeVisible();
+        await expect(page.getByText("Kaggle — Python Certificate of Completion")).toBeVisible();
+        await expect(page.getByText(/Showing 10 of 23 records/)).toBeVisible();
+
+        // Filter by ACHIEVEMENTS (2 items)
+        await achievementsBtn.click();
+        await expect(page.getByText("TCS CodeVita Season XIII — Global Rank 7007")).toBeVisible();
+        await expect(page.getByText("Naukri Campus Young Turks '26 — 99.67 Percentile Merit")).toBeVisible();
+        await expect(page.getByText(/Showing 2 of 23 records/)).toBeVisible();
+
+        // Filter by HACKATHONS (2 items)
         await hackathonsBtn.click();
         await expect(page.getByText("Axis HackSprint National Level Hackathon")).toBeVisible();
-        await expect(page.getByText(/Showing 2 of 10 records/)).toBeVisible();
+        await expect(page.getByText(/Showing 2 of 23 records/)).toBeVisible();
 
         // Filter by INTERNATIONAL CONFERENCE (2 unique events)
         await confBtn.click();
@@ -32,20 +48,20 @@ test.describe("Gallery & Visual Log Suite", () => {
 
         // Restore ALL EVENTS
         await allEventsBtn.click();
-        await expect(page.getByText(/Showing 10 of 10 records/)).toBeVisible();
+        await expect(page.getByText(/Showing 23 of 23 records/)).toBeVisible();
     });
 
     test("gallery item opens details lightbox modal and closes on Escape", async ({ page }) => {
         await page.goto("/gallery");
 
         // Click first item to open modal
-        const firstCard = page.getByText("Axis HackSprint National Level Hackathon").first();
+        const firstCard = page.getByText("Oracle Certified Foundations Associate — Agentic AI").first();
         await firstCard.click();
 
         // Verify modal dialog
         const dialog = page.getByRole("dialog");
         await expect(dialog).toBeVisible();
-        await expect(dialog.getByText("Axis Institute of Technology & Management, Kanpur")).toBeVisible();
+        await expect(dialog.getByText("Venue: Oracle University")).toBeVisible();
 
         // Press Escape to close modal
         await page.keyboard.press("Escape");
@@ -70,16 +86,23 @@ test.describe("Gallery & Visual Log Suite", () => {
 
     test("gallery static assets respond with 200 OK", async ({ request }) => {
         const testImages = [
+            "/gallery/certificates/oracle-agentic-ai.jpg",
+            "/gallery/achievements/tcs-codevita-season13.jpg",
+            "/gallery/achievements/young-turks-2026.jpg",
+            "/gallery/certificates/zidio-internship.jpg",
+            "/gallery/certificates/apna-college-aiml.jpg",
+            "/gallery/certificates/linkedin-generative-ai.jpg",
+            "/gallery/certificates/kaggle-python.png",
+            "/gallery/certificates/infosys-javascript.jpg",
+            "/gallery/certificates/infosys-css3.jpg",
+            "/gallery/certificates/infosys-html5.jpg",
+            "/gallery/certificates/coding-ninjas-machine-learning.jpg",
+            "/gallery/certificates/coding-ninjas-dsa-python.jpg",
+            "/gallery/certificates/coding-ninjas-oops-python.jpg",
             "/gallery/hackathons/axis-hacksprint-hackathon.jpeg",
             "/gallery/hackathons/sih-smart-india-hackathon.jpeg",
-            "/gallery/hackathons/innovation-council-award.jpeg",
-            "/gallery/hackathons/logic-league-workshop.jpeg",
-            "/gallery/hackathons/research-felicitation.jpeg",
             "/gallery/research/ieee-iscs-2025-presentation.jpg",
-            "/gallery/research/ieee-sceecs-2026-presentation.jpeg",
             "/gallery/iit/iit-ai-workshop.jpeg",
-            "/gallery/iit/iit-ai-hackathon-cert.jpeg",
-            "/gallery/iit/iit-genai-workshop.jpeg",
         ];
 
         for (const imgUrl of testImages) {
@@ -96,9 +119,9 @@ test.describe("Gallery & Visual Log Suite", () => {
             imgs.map((img) => img.getAttribute("src"))
         );
 
-        expect(cardImages.length).toBe(10);
+        expect(cardImages.length).toBe(23);
         const uniqueSrcs = new Set(cardImages);
         // Expect exact 1-to-1 match: every image is completely unique!
-        expect(uniqueSrcs.size).toBe(10);
+        expect(uniqueSrcs.size).toBe(23);
     });
 });

@@ -2,7 +2,7 @@ export const personalData = {
   name: "Atul",
   profile: "/profile.png",
   designation: "AI/ML Engineer | Full-Stack Developer",
-  description: "Technology undergraduate with a strong foundation in machine learning, generative AI, and full-stack application development. Brings practical experience in building data-driven solutions, working with cloud platforms, and translating real-world requirements into functional products. Combines an analytical, research-oriented mindset with strong problem-solving ability and a focus on creating reliable, user-centric technology.",
+  description: "Final-year B.Tech Computer Science student graduating in 2027, focused on AI/ML, Generative AI, and full-stack application development. Brings practical experience in building data-driven solutions, working with cloud platforms, and translating real-world requirements into functional products. Combines an analytical, research-oriented mindset with strong problem-solving ability and a focus on creating reliable, user-centric technology.",
   email: "atulverma15704@gmail.com",
   secondaryEmail: "23bcs011atul@allenhouse.in",
   phone: "+91-8756890816",

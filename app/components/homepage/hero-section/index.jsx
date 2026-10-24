@@ -9,6 +9,21 @@ import { MdDownload } from "react-icons/md";
 import { RiContactsFill } from "react-icons/ri";
 import { SiGeeksforgeeks, SiLeetcode, SiResearchgate } from "react-icons/si";
 
+const coderSkills = [
+  'Python',
+  'Machine Learning',
+  'FastAPI',
+  'React',
+  'Next.js',
+  'Generative AI',
+  'Multi-Agent Systems',
+  'RAG',
+  'XGBoost',
+  'SHAP',
+  'Docker',
+  'MongoDB',
+];
+
 function HeroSection() {
   return (
     <section className="relative flex flex-col items-center justify-between py-4 lg:py-12">
@@ -100,6 +115,7 @@ function HeroSection() {
               role="button"
               target="_blank"
               rel="noopener noreferrer"
+              prefetch={false}
               download={personalData.resume ? "Atul_Verma_AI_ML_Resume.pdf" : undefined}
               href={personalData.resume || personalData.github}
             >
@@ -136,24 +152,17 @@ function HeroSection() {
                 <span className="text-gray-400">{`',`}</span>
               </div>
               <div className="ml-4 lg:ml-8 mr-2">
-                <span className=" text-white">skills:</span>
-                <span className="text-gray-400">{`['`}</span>
-                <span className="text-amber-300">Python</span>
-                <span className="text-gray-400">{"', '"}</span>
-                <span className="text-amber-300">Machine Learning</span>
-                <span className="text-gray-400">{"', '"}</span>
-                <span className="text-amber-300">React</span>
-                <span className="text-gray-400">{"', '"}</span>
-                <span className="text-amber-300">Flask</span>
-                <span className="text-gray-400">{"', '"}</span>
-                <span className="text-amber-300">MongoDB</span>
-                <span className="text-gray-400">{"', '"}</span>
-                <span className="text-amber-300">Scikit-learn</span>
-                <span className="text-gray-400">{"', '"}</span>
-                <span className="text-amber-300">TensorFlow</span>
-                <span className="text-gray-400">{"', '"}</span>
-                <span className="text-amber-300">Docker</span>
-                <span className="text-gray-400">{"'],"}</span>
+                <span className="text-white">skills:</span>
+                <span className="text-gray-400">{` ['`}</span>
+                {coderSkills.map((skill, index) => (
+                  <span key={skill}>
+                    <span className="text-amber-300">{skill}</span>
+                    {index < coderSkills.length - 1 && (
+                      <span className="text-gray-400">{`', '`}</span>
+                    )}
+                  </span>
+                ))}
+                <span className="text-gray-400">{`'],`}</span>
               </div>
               <div>
                 <span className="ml-4 lg:ml-8 mr-2 text-white">hardWorker:</span>

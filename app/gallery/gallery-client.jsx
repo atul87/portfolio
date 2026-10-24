@@ -231,6 +231,18 @@ export default function GalleryClient() {
                   </div>
                 )}
 
+                {/* Credential ID badge if present */}
+                {activeModalItem.credentialId && (
+                  <div className="mt-4 p-3 rounded-lg bg-[#10163a] border border-[#222d6e] flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+                    <span className="text-gray-400">
+                      Credential / Verification ID:
+                    </span>
+                    <span className="text-[#16f2b3] font-semibold tracking-wide select-all bg-[#0a0f29] px-2.5 py-1 rounded border border-[#16f2b3]/20">
+                      {activeModalItem.credentialId}
+                    </span>
+                  </div>
+                )}
+
                 {/* PDF Link if present */}
                 {activeModalItem.pdfUrl && (
                   <div className="mt-5">
