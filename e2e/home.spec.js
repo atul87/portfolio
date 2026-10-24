@@ -201,11 +201,44 @@ test("hero section renders updated coder skills and about me bio", async ({ page
     await expect(page.getByText("RAG", { exact: true })).toBeVisible();
     await expect(page.getByText("XGBoost").first()).toBeVisible();
 
-    // Verify FORESIGHT project card tools
+    // Verify FORESIGHT project card tools and syntax quotes
     const projectCard = page.locator("#projects");
     await expect(projectCard.getByText("project_1.ts")).toBeVisible();
     await expect(projectCard.getByText("Time-Series", { exact: true })).toBeVisible();
     await expect(projectCard.getByText("Scikit-learn").first()).toBeVisible();
+    await expect(projectCard.getByText("'],").first()).toBeVisible();
 });
+
+test("home page renders What I Value section and HackerRank Achievements card", async ({ page }) => {
+    await page.goto("/");
+
+    // Verify What I Value section
+    const valuesSection = page.locator("#values");
+    await expect(valuesSection).toBeVisible();
+    await expect(valuesSection.getByRole("heading", { name: "What I Value" })).toBeVisible();
+    await expect(valuesSection.getByText("The principles that guide my work and professional relationships.")).toBeVisible();
+    await expect(valuesSection.getByText("Clean Code", { exact: true })).toBeVisible();
+    await expect(valuesSection.getByText("Innovation", { exact: true })).toBeVisible();
+    await expect(valuesSection.getByText("Collaboration", { exact: true })).toBeVisible();
+    await expect(valuesSection.getByText("Impact", { exact: true })).toBeVisible();
+
+    // Verify HackerRank Achievements card
+    const hackerRankCard = page.locator("#hackerrank-achievements");
+    await expect(hackerRankCard).toBeVisible();
+    await expect(hackerRankCard.getByText("HackerRank Achievements")).toBeVisible();
+    await expect(hackerRankCard.getByText("Competitive programming and coding proficiency")).toBeVisible();
+    await expect(hackerRankCard.getByText("Python", { exact: true })).toBeVisible();
+    await expect(hackerRankCard.getByText("5 / 5")).toBeVisible();
+    await expect(hackerRankCard.getByText("Gold", { exact: true })).toBeVisible();
+    await expect(hackerRankCard.getByText("Problem Solving", { exact: true })).toBeVisible();
+    await expect(hackerRankCard.getByText("4 / 5")).toBeVisible();
+    await expect(hackerRankCard.getByText("Silver", { exact: true })).toBeVisible();
+
+    // Verify outbound link
+    const hrLink = hackerRankCard.getByRole("link", { name: /View HackerRank Profile/i });
+    await expect(hrLink).toBeVisible();
+    await expect(hrLink).toHaveAttribute("href", /hackerrank\.com\/profile\/atulverma15704/);
+});
+
 
 

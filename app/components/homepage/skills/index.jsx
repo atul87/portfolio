@@ -5,6 +5,7 @@ import { skillsImage } from "@/utils/skill-image";
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
 import SoftSkills from "./soft-skills";
+import HackerRankCard from "./hackerrank-card";
 
 function Skills() {
   return (
@@ -67,6 +68,9 @@ function Skills() {
           ))}
         </Marquee>
       </div>
+
+      {/* HackerRank Achievements Feature */}
+      <HackerRankCard />
 
       {/* Dedicated Soft Skills Section */}
       <SoftSkills />

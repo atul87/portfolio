@@ -7,7 +7,7 @@ import { BsGithub, BsLinkedin } from "react-icons/bs";
 import { FaLaptopCode } from "react-icons/fa";
 import { MdDownload } from "react-icons/md";
 import { RiContactsFill } from "react-icons/ri";
-import { SiGeeksforgeeks, SiLeetcode, SiResearchgate } from "react-icons/si";
+import { SiGeeksforgeeks, SiHackerrank, SiLeetcode, SiResearchgate } from "react-icons/si";
 
 const coderSkills = [
   'Python',
@@ -90,6 +90,15 @@ function HeroSection() {
               aria-label="Naukri Code360 Profile"
             >
               <FaLaptopCode size={30} />
+            </Link>
+            <Link
+              href={personalData.hackerrank}
+              target='_blank'
+              rel="noopener noreferrer"
+              className="transition-all text-pink-500 hover:scale-125 duration-300"
+              aria-label="HackerRank Profile"
+            >
+              <SiHackerrank size={30} />
             </Link>
             <Link
               href={personalData.researchGate}

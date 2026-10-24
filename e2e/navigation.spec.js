@@ -98,5 +98,31 @@ test.describe("Navigation and External Links", () => {
     const rgFooter = page.locator('footer a[aria-label="ResearchGate Profile"], div.relative a[aria-label="ResearchGate Profile"]').first();
     await expect(rgFooter).toBeVisible();
   });
+
+  test("HackerRank profile links exist and point to valid profile", async ({ page }) => {
+    await page.goto("/");
+
+    // Hero Section
+    const hrHero = page.locator('a[aria-label="HackerRank Profile"]').first();
+    await expect(hrHero).toBeVisible();
+    await expect(hrHero).toHaveAttribute(
+      "href",
+      "https://www.hackerrank.com/profile/atulverma15704"
+    );
+    await expect(hrHero).toHaveAttribute("target", "_blank");
+
+    // Contact Section
+    const hrContact = page.locator('#contact a[aria-label="HackerRank Profile"]');
+    await expect(hrContact).toBeVisible();
+    await expect(hrContact).toHaveAttribute(
+      "href",
+      "https://www.hackerrank.com/profile/atulverma15704"
+    );
+
+    // Footer
+    const hrFooter = page.locator('div.relative a[aria-label="HackerRank Profile"]').first();
+    await expect(hrFooter).toBeVisible();
+  });
 });
+
 

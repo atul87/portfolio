@@ -81,6 +81,7 @@ function getPortfolioContext() {
     linkedIn: personalData.linkedIn,
     resume: personalData.resume,
     email: personalData.email,
+    hackerrank: personalData.hackerrank,
     researchGate: personalData.researchGate,
   };
 
@@ -103,13 +104,22 @@ function getPortfolioContext() {
   const competitiveRanks = {
     tcsCodeVita: "Season 13 - Global Rank 7007 out of 100,000+ competitive coders",
     ncat: "National College Aptitude Test - AIR 7361 (88+ percentile)",
+    hackerrank: "5-star Gold badge in Python (5/5 stars) and 4-star Silver badge in Problem Solving (4/5 stars) on HackerRank (https://www.hackerrank.com/profile/atulverma15704)",
     leetcode: "https://leetcode.com/u/Atul9876/",
     geeksforgeeks: "https://www.geeksforgeeks.org/profile/atul8756",
   };
 
+  const coreValues = [
+    { title: "Clean Code", description: "Writing maintainable, scalable, and well-documented code that stands the test of time." },
+    { title: "Innovation", description: "Constantly exploring new technologies and approaches to solve complex problems." },
+    { title: "Collaboration", description: "Building strong relationships and working effectively with diverse teams." },
+    { title: "Impact", description: "Focusing on creating solutions that make a real difference in people's lives." },
+  ];
+
   return JSON.stringify({
     profile,
     competitiveRanks,
+    coreValues,
     research,
     projects: projectsData,
     experience: experiences,

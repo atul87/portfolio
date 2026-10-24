@@ -11,6 +11,7 @@ import ResearchSection from "./components/homepage/research";
 import Skills from "./components/homepage/skills";
 import HobbiesSection from "./components/homepage/hobbies";
 import GallerySection from "./components/homepage/gallery";
+import WhatIValueSection from "./components/homepage/values";
 import { localBlogs } from "@/utils/data/local-blogs";
 
 async function getData() {
@@ -48,6 +49,7 @@ export default async function Home() {
       <HeroSection />
       <StatsSection />
       <AboutSection />
+      <WhatIValueSection />
       <Experience />
       <Skills />
       <Projects />

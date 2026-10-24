@@ -21,9 +21,12 @@ module.exports = defineConfig({
         },
     ],
     webServer: {
-        command: "npm run build && npm run start",
+        // Keep the test server on the repository's declared package manager.
+        // CI installs dependencies with pnpm, so invoking npm here can otherwise
+        // produce a different dependency resolution than the one just validated.
+        command: "corepack pnpm run build && corepack pnpm run start",
         url: "http://127.0.0.1:3000",
-        reuseExistingServer: true,
+        reuseExistingServer: !process.env.CI,
         timeout: 180 * 1000,
     },
 });

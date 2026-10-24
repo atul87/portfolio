@@ -89,7 +89,7 @@ function ProjectCard({ project }) {
                 )}
               </React.Fragment>
             ))}
-            <span className="text-gray-400">{"],"}</span>
+            <span className="text-gray-400">{`'],`}</span>
           </div>
 
           <div className="my-1">

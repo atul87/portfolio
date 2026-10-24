@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { personalData } from '@/utils/data/personal-data';
 import { FaLaptopCode } from "react-icons/fa";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
-import { SiGeeksforgeeks, SiResearchgate } from "react-icons/si";
+import { SiGeeksforgeeks, SiHackerrank, SiResearchgate } from "react-icons/si";
 
 function Footer() {
   return (
@@ -56,6 +56,16 @@ function Footer() {
             >
               <FaLaptopCode />
               <span>Code360</span>
+            </Link>
+            <Link
+              target="_blank"
+              rel="noopener noreferrer"
+              href={personalData.hackerrank}
+              className="flex items-center gap-2 uppercase hover:text-[#16f2b3] transition-colors"
+              aria-label="HackerRank Profile"
+            >
+              <SiHackerrank />
+              <span>HackerRank</span>
             </Link>
             <Link
               target="_blank"

@@ -58,6 +58,7 @@ const jsonLd = {
     "https://www.linkedin.com/in/atulatul87",
     "https://www.geeksforgeeks.org/profile/atul8756",
     "https://leetcode.com/u/Atul9876/",
+    "https://www.hackerrank.com/profile/atulverma15704",
     "https://www.naukri.com/code360/profile/AtulCodeWizard",
     "https://www.researchgate.net/profile/Atul-Atul-10?ev=hdr_xprf",
   ],
