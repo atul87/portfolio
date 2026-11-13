@@ -64,9 +64,11 @@ export default function PressCoverageCard() {
         {/* Main Card Content */}
         <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 items-center">
           {/* Newspaper Image Thumbnail with Zoom Overlay */}
-          <div
+          <button
+            type="button"
             onClick={() => setIsOpen(true)}
-            className="sm:col-span-5 relative group/img cursor-pointer rounded-xl overflow-hidden border border-[#2a2e5a] hover:border-[#16f2b3] transition-all duration-300 bg-black/40 shadow-inner aspect-[4/5] max-h-[260px] sm:max-h-[300px] flex items-center justify-center"
+            aria-label="Enlarge newspaper clipping"
+            className="sm:col-span-5 relative group/img cursor-pointer rounded-xl overflow-hidden border border-[#2a2e5a] hover:border-[#16f2b3] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#16f2b3] transition-all duration-300 bg-black/40 shadow-inner aspect-[4/5] max-h-[260px] sm:max-h-[300px] flex items-center justify-center p-0 w-full"
             title="Click to view full newspaper clipping"
           >
             <Image
@@ -83,7 +85,7 @@ export default function PressCoverageCard() {
                 <span>Read Full Article</span>
               </span>
             </div>
-          </div>
+          </button>
 
           {/* Description & Highlights */}
           <div className="sm:col-span-7 flex flex-col justify-between h-full">

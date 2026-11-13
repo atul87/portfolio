@@ -1,5 +1,32 @@
 import React from "react";
 import { hobbiesData } from "@/utils/data/hobbies-data";
+import {
+  FaLaptopCode,
+  FaRegNewspaper,
+  FaHeartbeat,
+  FaBookOpen,
+  FaPuzzlePiece,
+  FaPlaneDeparture,
+} from "react-icons/fa";
+
+function getHobbyIcon(iconName) {
+  switch (iconName) {
+    case "technology":
+      return <FaLaptopCode className="text-[#16f2b3]" size={36} />;
+    case "news":
+      return <FaRegNewspaper className="text-cyan-400" size={34} />;
+    case "yoga":
+      return <FaHeartbeat className="text-emerald-400" size={34} />;
+    case "books":
+      return <FaBookOpen className="text-amber-400" size={34} />;
+    case "puzzles":
+      return <FaPuzzlePiece className="text-violet-400" size={34} />;
+    case "travel":
+      return <FaPlaneDeparture className="text-pink-400" size={34} />;
+    default:
+      return <FaLaptopCode className="text-[#16f2b3]" size={36} />;
+  }
+}
 
 function HobbiesSection() {
   return (
@@ -36,8 +63,8 @@ function HobbiesSection() {
               <div className="h-[1px] w-3/4 bg-gradient-to-r from-transparent via-violet-500/30 to-transparent absolute top-0" />
 
               {/* Icon */}
-              <div className="text-3xl sm:text-4xl mb-4 transition-transform duration-300 group-hover:scale-110 select-none">
-                {hobby.icon}
+              <div className="mb-4 p-3 rounded-2xl bg-[#090d24] border border-[#1f295c] transition-transform duration-300 group-hover:scale-110 flex items-center justify-center">
+                {getHobbyIcon(hobby.iconName)}
               </div>
 
               {/* Title */}

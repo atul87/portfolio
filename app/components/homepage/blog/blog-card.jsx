@@ -1,9 +1,9 @@
 // @flow strict
-import { timeConverter } from '@/utils/time-converter';
+import { formatDate } from '@/utils/time-converter';
 import Image from 'next/image';
 import Link from 'next/link';
 import { BsHeartFill, BsClock } from 'react-icons/bs';
-import { FaCommentAlt, FaArrowRight, FaCity, FaLightbulb, FaCode } from 'react-icons/fa';
+import { FaCommentAlt, FaCity, FaLightbulb, FaCode } from 'react-icons/fa';
 import { MdSecurity, MdFunctions, MdArticle } from 'react-icons/md';
 
 function getBlogTheme(iconType) {
@@ -103,7 +103,7 @@ function BlogCard({ blog }) {
         <div className="p-5 flex flex-col">
           {!isLocalPost && (
             <div className="flex justify-between items-center text-[#16f2b3] text-xs mb-2">
-              <p>{timeConverter(blog.published_at)}</p>
+              <p>{formatDate(blog.published_at)}</p>
               <div className="flex items-center gap-3">
                 <p className="flex items-center gap-1">
                   <BsHeartFill size={12} className="text-pink-500" />
@@ -153,10 +153,9 @@ function BlogCard({ blog }) {
           href={href}
           target={isLocalPost ? undefined : "_blank"}
           rel={isLocalPost ? undefined : "noopener noreferrer"}
-          className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#16f2b3] group-hover:text-pink-400 transition-colors"
+          className="inline-flex items-center text-xs font-semibold uppercase tracking-wider text-[#16f2b3] group-hover:text-pink-400 transition-colors"
         >
           <span>Read Article</span>
-          <FaArrowRight size={11} className="transition-transform group-hover:translate-x-1" />
         </Link>
         <span className="text-[11px] font-mono text-gray-500">
           {isLocalPost ? "Essay" : `${blog.reading_time_minutes} min read`}

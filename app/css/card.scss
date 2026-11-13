@@ -42,7 +42,7 @@
   mask-composite: intersect;
   mask-clip: padding-box, border-box;
   opacity: var(--active);
-  transition: opacity 1s;
+  transition: opacity 0.3s;
 }
 
 .glow-card::before {
@@ -63,7 +63,7 @@
   mask-clip: padding-box, border-box;
   mask-composite: intersect;
   opacity: var(--active);
-  transition: opacity 1s;
+  transition: opacity 0.3s;
 }
 
 .glow-card::after {
@@ -81,7 +81,7 @@
   background-attachment: fixed;
   border-radius: 12px;
   opacity: var(--active, 0);
-  transition: opacity 1s;
+  transition: opacity 0.3s;
   --alpha: 0;
   inset: 0;
   border: 2px solid transparent;

@@ -65,7 +65,7 @@ export default function WhatIValueSection() {
           return (
             <div
               key={item.id}
-              className={`relative rounded-2xl border border-[#1b2c68a0] bg-gradient-to-b from-[#0d1224]/90 to-[#0a0d37]/90 p-6 sm:p-7 shadow-xl shadow-indigo-950/30 backdrop-blur-sm transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl hover:shadow-violet-950/40 group overflow-hidden ${item.hoverBorder}`}
+              className={`relative rounded-2xl border border-[#1b2c68a0] frosted-glass p-6 sm:p-7 shadow-xl shadow-indigo-950/30 transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl hover:shadow-violet-950/40 group overflow-hidden ${item.hoverBorder}`}
             >
               {/* Top Accent Gradient Border on Hover */}
               <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#16f2b3]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

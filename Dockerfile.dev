@@ -8,9 +8,16 @@ COPY . .
 
 FROM node:24-bookworm-slim AS release
 WORKDIR /app
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
+
 RUN npm i -g pnpm@10
 
 COPY --from=base /app ./
+
+RUN chown -R node:node /app
+
+USER node
 
 EXPOSE 3000
 

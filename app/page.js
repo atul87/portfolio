@@ -45,7 +45,7 @@ export default async function Home() {
   const blogs = [...localBlogs, ...remoteBlogs];
 
   return (
-    <div suppressHydrationWarning >
+    <div>
       <HeroSection />
       <StatsSection />
       <AboutSection />

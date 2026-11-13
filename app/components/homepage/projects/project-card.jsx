@@ -23,11 +23,8 @@ function ProjectCard({ project }) {
 
       {/* Terminal Title Bar */}
       <div className="px-4 lg:px-6 py-3 flex items-center justify-between border-b border-indigo-950/60 bg-[#0d1224]/90 gap-2">
-        <div className="flex items-center space-x-2 shrink-0">
-          <div className="h-3 w-3 rounded-full bg-red-500/90 shadow-sm shadow-red-500/50" />
-          <div className="h-3 w-3 rounded-full bg-yellow-500/90 shadow-sm shadow-yellow-500/50" />
-          <div className="h-3 w-3 rounded-full bg-green-500/90 shadow-sm shadow-green-500/50" />
-          <span className="hidden sm:inline-block ml-2 text-[11px] font-mono text-gray-500">
+        <div className="flex items-center gap-2 shrink-0">
+          <span className="text-[11px] font-mono text-gray-400 bg-[#121840] px-2 py-0.5 rounded border border-indigo-900/50">
             project_{project.id || 1}.ts
           </span>
         </div>

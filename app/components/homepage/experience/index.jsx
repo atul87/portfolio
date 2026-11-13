@@ -13,7 +13,8 @@ function Experience() {
     <div id="experience" className="relative z-50 border-t my-12 lg:my-24 border-[#25213b]">
       <Image
         src="/section.svg"
-        alt="Hero"
+        alt=""
+        aria-hidden="true"
         width={1572}
         height={795}
         sizes="100vw"
@@ -49,7 +50,8 @@ function Experience() {
                     <div className="p-3 relative">
                       <Image
                         src="/blur-23.svg"
-                        alt="Hero"
+                        alt=""
+                        aria-hidden="true"
                         width={1080}
                         height={200}
                         sizes="(max-width: 1024px) 100vw, 540px"

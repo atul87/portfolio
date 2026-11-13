@@ -29,7 +29,7 @@ function AboutSection() {
             height={280}
             alt={personalData.name}
             sizes="(max-width: 1024px) 280px, 320px"
-            className="rounded-lg transition-all duration-1000 grayscale hover:grayscale-0 hover:scale-110 cursor-pointer"
+            className="rounded-lg transition-transform duration-300 hover:scale-105"
           />
         </div>
       </div>

@@ -8,14 +8,14 @@ import { SiGooglemaps } from "react-icons/si";
 export default function KanpurMapCard() {
   const [copied, setCopied] = useState(false);
 
-  const fullAddress = "1735/02, Awas Vikas, Hanspuram, Naubasta, Kanpur, Uttar Pradesh, India - 208021";
-  const mapEmbedUrl = "https://maps.google.com/maps?q=1735%2F02%20awas%20vikas%20hanspuram%20naubasta%20kanpur&t=&z=15&ie=UTF8&iwloc=&output=embed";
-  const googleMapsUrl = "https://www.google.com/maps/search/?api=1&query=1735%2F02+awas+vikas+hanspuram+naubasta+kanpur";
-  const directionsUrl = "https://www.google.com/maps/dir/?api=1&destination=1735%2F02+awas+vikas+hanspuram+naubasta+kanpur";
+  const fullAddress = "Awas Vikas, Hanspuram, Naubasta, Kanpur, Uttar Pradesh, India - 208021";
+  const mapEmbedUrl = "https://maps.google.com/maps?q=awas%20vikas%20hanspuram%20naubasta%20kanpur&t=&z=14&ie=UTF8&iwloc=&output=embed";
+  const googleMapsUrl = "https://www.google.com/maps/search/?api=1&query=awas+vikas+hanspuram+naubasta+kanpur";
+  const directionsUrl = "https://www.google.com/maps/dir/?api=1&destination=awas+vikas+hanspuram+naubasta+kanpur";
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText("1735/02 awas vikas hanspuram naubasta kanpur");
+      await navigator.clipboard.writeText("Awas Vikas, Hanspuram, Naubasta, Kanpur, Uttar Pradesh, India - 208021");
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
@@ -60,7 +60,7 @@ export default function KanpurMapCard() {
       <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full min-h-[240px] sm:min-h-[270px] rounded-xl overflow-hidden border border-[#2a2e5a] hover:border-[#16f2b3]/50 transition-all duration-300 bg-[#090d24] shadow-inner mb-4">
         <iframe
           src={mapEmbedUrl}
-          title="Google Maps Location - 1735/02 Awas Vikas Hanspuram Naubasta Kanpur"
+          title="Google Maps Location - Awas Vikas Hanspuram Naubasta Kanpur"
           width="100%"
           height="100%"
           style={{ border: 0 }}
@@ -78,7 +78,7 @@ export default function KanpurMapCard() {
             <FaMapMarkerAlt className="text-pink-400 mt-1 shrink-0" size={15} />
             <div>
               <p className="text-xs sm:text-sm font-semibold text-white leading-tight">
-                1735/02, Awas Vikas, Hanspuram
+                Awas Vikas, Hanspuram
               </p>
               <p className="text-xs text-gray-400 mt-0.5">
                 Naubasta, Kanpur, Uttar Pradesh — 208021

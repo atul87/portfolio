@@ -76,7 +76,7 @@ export default function GalleryClient() {
             >
               <span>{cat}</span>
               {isSelected ? (
-                <span className="ml-1.5 font-bold">· {count}</span>
+                <span className="ml-1.5 font-bold">({count})</span>
               ) : null}
             </button>
           );
@@ -93,8 +93,17 @@ export default function GalleryClient() {
         {filteredItems.map((item, index) => (
           <div
             key={item.id}
+            role="button"
+            tabIndex={0}
+            aria-label={`View details for ${item.title}`}
             onClick={() => setActiveModalItem(item)}
-            className="group relative rounded-2xl bg-[#0e1338]/90 border border-[#1f295c] overflow-hidden hover:border-[#16f2b3]/60 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-indigo-950/60 cursor-pointer flex flex-col"
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                setActiveModalItem(item);
+              }
+            }}
+            className="group relative rounded-2xl bg-[#0e1338]/90 border border-[#1f295c] overflow-hidden hover:border-[#16f2b3]/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#16f2b3] transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-indigo-950/60 cursor-pointer flex flex-col text-left"
           >
             {/* Top gradient highlight */}
             <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-violet-500/30 to-transparent" />

@@ -130,13 +130,25 @@ function getPortfolioContext() {
   });
 }
 
+function getClientIp(request) {
+  const directIp = request.headers.get("x-real-ip") || request.headers.get("cf-connecting-ip");
+  if (directIp) {
+    const trimmed = directIp.trim();
+    if (/^[a-fA-F0-9:.]+$/.test(trimmed) && trimmed.length <= 45) {
+      return trimmed;
+    }
+  }
+  const forwardedFor = request.headers.get("x-forwarded-for") || "";
+  const firstIp = forwardedFor.split(",")[0].trim();
+  if (firstIp && /^[a-fA-F0-9:.]+$/.test(firstIp) && firstIp.length <= 45) {
+    return firstIp;
+  }
+  return "127.0.0.1";
+}
+
 export async function POST(request) {
   try {
-    const ip = (
-      request.headers.get("x-forwarded-for") || "127.0.0.1"
-    )
-      .split(",")[0]
-      .trim();
+    const ip = getClientIp(request);
 
     if (await isRateLimited(ip)) {
       return NextResponse.json(

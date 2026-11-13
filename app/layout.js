@@ -86,7 +86,13 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className={inter.className}>
-        <main className="min-h-screen relative mx-auto px-6 sm:px-12 lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem] text-white">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-[#16f2b3] focus:text-black focus:font-bold focus:rounded-md focus:shadow-lg focus:outline-none"
+        >
+          Skip to main content
+        </a>
+        <main id="main-content" className="min-h-screen relative mx-auto px-6 sm:px-12 lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem] text-white">
           <Navbar />
           {children}
           <ScrollToTop />

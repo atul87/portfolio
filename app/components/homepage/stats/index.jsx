@@ -49,7 +49,7 @@ export default function StatsSection() {
         {stats.map((stat, index) => (
           <div
             key={index}
-            className={`p-4 rounded-xl bg-gradient-to-br from-[#10172d]/90 to-[#0a0d37]/90 border border-[#1b2c68a0] transition-all duration-300 hover:scale-[1.03] hover:shadow-lg hover:shadow-violet-900/20 ${stat.borderColor} flex flex-col justify-between`}
+            className={`p-4 rounded-xl frosted-glass border border-[#1b2c68a0] transition-all duration-300 hover:scale-[1.03] hover:shadow-lg hover:shadow-violet-900/20 ${stat.borderColor} flex flex-col justify-between overflow-hidden`}
           >
             <div className="flex items-center justify-between mb-2">
               <span className="text-2xl lg:text-3xl font-extrabold text-white tracking-tight">

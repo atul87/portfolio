@@ -4,7 +4,7 @@ export const contactsData = {
     phone: "+91-8756890816",
     address: "Kanpur, Uttar Pradesh, India",
     github: "https://github.com/atul87",
-    linkedIn: "https://linkedin.com/in/atul-verma4321",
+    linkedIn: "https://www.linkedin.com/in/atulatul87",
     leetcode: "https://leetcode.com/u/Atul9876/",
     code360: "https://www.naukri.com/code360/profile/AtulCodeWizard",
     geeksforgeeks: "https://www.geeksforgeeks.org/profile/atul8756",

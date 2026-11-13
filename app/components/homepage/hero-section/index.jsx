@@ -8,6 +8,8 @@ import { FaLaptopCode } from "react-icons/fa";
 import { MdDownload } from "react-icons/md";
 import { RiContactsFill } from "react-icons/ri";
 import { SiGeeksforgeeks, SiHackerrank, SiLeetcode, SiResearchgate } from "react-icons/si";
+import NeuralBackground from "./neural-background";
+import Magnetic from "@/app/components/helper/magnetic";
 
 const coderSkills = [
   'Python',
@@ -27,6 +29,7 @@ const coderSkills = [
 function HeroSection() {
   return (
     <section className="relative flex flex-col items-center justify-between py-4 lg:py-12">
+      <NeuralBackground />
       <Image
         src="/hero.svg"
         alt="Hero"
@@ -112,25 +115,29 @@ function HeroSection() {
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
-            <Link href="#contact" className="group flex min-h-11 items-center gap-1 rounded-full bg-gradient-to-r from-violet-600 to-pink-500 p-[1px] transition-all duration-300 hover:from-pink-500 hover:to-violet-600">
-              <span className="flex h-full items-center gap-1 rounded-full bg-[#0d1224] px-3 py-3 text-center text-xs font-medium uppercase tracking-wider text-white transition-all duration-200 ease-out group-hover:gap-3 md:px-8 md:py-4 md:text-sm md:font-semibold">
-                Contact me
-                <RiContactsFill size={16} />
-              </span>
-            </Link>
+            <Magnetic>
+              <Link href="#contact" className="group flex min-h-11 items-center gap-1 rounded-full bg-gradient-to-r from-violet-600 to-pink-500 p-[1px] transition-all duration-300 hover:from-pink-500 hover:to-violet-600">
+                <span className="flex h-full items-center gap-1 rounded-full bg-[#0d1224] px-3 py-3 text-center text-xs font-medium uppercase tracking-wider text-white transition-all duration-200 ease-out group-hover:gap-3 md:px-8 md:py-4 md:text-sm md:font-semibold">
+                  Contact me
+                  <RiContactsFill size={16} />
+                </span>
+              </Link>
+            </Magnetic>
 
-            <Link
-              className="flex min-h-11 items-center gap-1 rounded-full bg-gradient-to-r from-pink-500 to-violet-600 px-3 py-3 text-center text-xs font-medium uppercase tracking-wider text-white no-underline transition-all duration-200 ease-out hover:gap-3 hover:text-white hover:no-underline md:px-8 md:py-4 md:text-sm md:font-semibold"
-              role="button"
-              target="_blank"
-              rel="noopener noreferrer"
-              prefetch={false}
-              download={personalData.resume ? "Atul_Verma_AI_ML_Resume.pdf" : undefined}
-              href={personalData.resume || personalData.github}
-            >
-              <span>{personalData.resume ? "Get Resume" : "View GitHub"}</span>
-              {personalData.resume ? <MdDownload size={16} /> : <BsGithub size={16} />}
-            </Link>
+            <Magnetic>
+              <Link
+                className="flex min-h-11 items-center gap-1 rounded-full bg-gradient-to-r from-pink-500 to-violet-600 px-3 py-3 text-center text-xs font-medium uppercase tracking-wider text-white no-underline transition-all duration-200 ease-out hover:gap-3 hover:text-white hover:no-underline md:px-8 md:py-4 md:text-sm md:font-semibold"
+                role="button"
+                target="_blank"
+                rel="noopener noreferrer"
+                prefetch={false}
+                download={personalData.resume ? "Atul_Verma_AI_ML_Resume.pdf" : undefined}
+                href={personalData.resume || personalData.github}
+              >
+                <span>{personalData.resume ? "Get Resume" : "View GitHub"}</span>
+                {personalData.resume ? <MdDownload size={16} /> : <BsGithub size={16} />}
+              </Link>
+            </Magnetic>
           </div>
 
         </div>
@@ -139,12 +146,11 @@ function HeroSection() {
             <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-pink-500 to-violet-600"></div>
             <div className="h-[1px] w-full bg-gradient-to-r from-violet-600 to-transparent"></div>
           </div>
-          <div className="px-4 lg:px-8 py-5">
-            <div className="flex flex-row space-x-2">
-              <div className="h-3 w-3 rounded-full bg-red-400"></div>
-              <div className="h-3 w-3 rounded-full bg-orange-400"></div>
-              <div className="h-3 w-3 rounded-full bg-green-200"></div>
+          <div className="px-4 lg:px-8 py-3 flex items-center justify-between border-b border-indigo-900 bg-[#0a0d37]/60">
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-mono font-medium text-gray-400">developer.ts</span>
             </div>
+            <span className="text-[11px] font-mono text-[#16f2b3]/80">TypeScript</span>
           </div>
           <div className="overflow-hidden border-t-[2px] border-indigo-900 px-4 lg:px-8 py-4 lg:py-8">
             <code className="font-mono text-xs md:text-sm lg:text-base">

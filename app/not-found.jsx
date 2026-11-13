@@ -1,21 +1,46 @@
 // @flow strict
 
 import Link from "next/link";
+import { FaArrowLeft } from "react-icons/fa";
 
-function NotFound() {
+export default function NotFound() {
   return (
-    <div className="flex flex-col items-center justify-center h-screen text-center">
-      <h1 className="text-6xl font-bold text-gray-800 dark:text-gray-100">404</h1>
-      <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">Page Not Found</p>
-      <p className="mt-2 text-gray-500 dark:text-gray-400">Sorry, the page you are looking for does not exist.</p>
-      <Link className="mt-5 flex items-center gap-1 hover:gap-3 rounded-full bg-gradient-to-r from-pink-500 to-violet-600 px-3 md:px-8 py-3 text-center text-xs md:text-sm font-medium uppercase tracking-wider text-white no-underline transition-all duration-200 ease-out hover:text-white hover:no-underline md:font-semibold"
-        role="button" 
-        href="/"
-      >
-        Go to Home
-      </Link>
-    </div>
-  );
-};
+    <main className="min-h-screen flex items-center justify-center px-4 py-16 relative overflow-hidden bg-[#0d1224]">
+      {/* Ambient background glow */}
+      <div 
+        className="w-[300px] h-[300px] bg-violet-600/15 rounded-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 filter blur-3xl pointer-events-none" 
+        aria-hidden="true"
+      />
 
-export default NotFound;
+      <div className="relative z-10 max-w-md w-full frosted-glass border border-[#1b2c68a0] rounded-2xl p-8 sm:p-10 text-center shadow-2xl shadow-indigo-950/50">
+        <span className="font-mono text-xs uppercase tracking-widest text-[#16f2b3] bg-[#121840] px-3 py-1 rounded-full border border-indigo-900/60 inline-block mb-4">
+          Route Not Found
+        </span>
+
+        <h1 className="text-7xl sm:text-8xl font-black text-white tracking-tighter">
+          4<span className="text-[#16f2b3]">0</span>4
+        </h1>
+
+        <h2 className="text-xl sm:text-2xl font-bold text-white mt-4 tracking-tight">
+          Page Not Found
+        </h2>
+
+        <p className="mt-2.5 text-sm sm:text-base text-gray-400 leading-relaxed">
+          The page or route you are looking for does not exist or has been moved to another coordinate.
+        </p>
+
+        <div className="mt-8 flex justify-center">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-violet-600 to-pink-500 p-[1px] transition-transform duration-200 hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#16f2b3]"
+          >
+            <span className="flex items-center gap-2 rounded-full bg-[#0d1224] px-6 py-3 text-xs sm:text-sm font-semibold uppercase tracking-wider text-white transition-colors duration-200 hover:text-[#16f2b3]">
+              <FaArrowLeft size={13} />
+              Go to Home
+            </span>
+          </Link>
+        </div>
+      </div>
+    </main>
+  );
+}

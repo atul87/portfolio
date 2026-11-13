@@ -1,7 +1,17 @@
 @use "tailwindcss";
 
 :root {
-  --foreground-rgb: rgb(211, 216, 232);
+  --foreground-rgb: 211, 216, 232;
+  --bg-canvas: #0d1224;
+  --bg-card: #10172d;
+  --bg-surface: #0a0d37;
+  --border-subtle: #1b2c68a0;
+  --border-muted: #25213b;
+  --accent-primary: #16f2b3;
+  --accent-secondary: #ec4899;
+  --text-primary: #ffffff;
+  --text-muted: #8f96ad;
+  --text-secondary: #d3d8e8;
   color-scheme: dark;
 }
 
@@ -20,7 +30,7 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background-color: #0d1224;
+  background-color: var(--bg-canvas);
   min-width: 320px;
   text-rendering: optimizeLegibility;
 }
@@ -31,16 +41,17 @@ html {
 }
 
 ::selection {
-  color: #0d1224;
-  background: #16f2b3;
+  color: var(--bg-canvas);
+  background: var(--accent-primary);
 }
 
 :focus-visible {
-  outline: 2px solid #16f2b3;
+  outline: 2px solid var(--accent-primary);
   outline-offset: 3px;
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -51,16 +62,45 @@ html {
   }
 }
 
-#sticky-card-1 { --index: 1; }
-#sticky-card-2 { --index: 2; }
-#sticky-card-3 { --index: 3; }
-#sticky-card-4 { --index: 4; }
-#sticky-card-5 { --index: 5; }
-#sticky-card-6 { --index: 6; }
-#sticky-card-7 { --index: 7; }
-#sticky-card-8 { --index: 8; }
-#sticky-card-9 { --index: 9; }
-#sticky-card-10 { --index: 10; }
+#sticky-card-1 {
+  --index: 1;
+}
+
+#sticky-card-2 {
+  --index: 2;
+}
+
+#sticky-card-3 {
+  --index: 3;
+}
+
+#sticky-card-4 {
+  --index: 4;
+}
+
+#sticky-card-5 {
+  --index: 5;
+}
+
+#sticky-card-6 {
+  --index: 6;
+}
+
+#sticky-card-7 {
+  --index: 7;
+}
+
+#sticky-card-8 {
+  --index: 8;
+}
+
+#sticky-card-9 {
+  --index: 9;
+}
+
+#sticky-card-10 {
+  --index: 10;
+}
 
 .sticky-card {
   top: clamp(4.5rem, calc(4rem + var(--index, 1) * 0.75rem), 8rem);

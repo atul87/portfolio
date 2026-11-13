@@ -1,3 +1,15 @@
+export function formatDate(isoTime) {
+  if (!isoTime) return "Recently";
+  const date = new Date(isoTime);
+  if (isNaN(date.getTime())) return "Recently";
+  return date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+}
+
 export function timeConverter(isoTime) {
   if (!isoTime) return "Recently";
   const pastTime = new Date(isoTime).getTime();

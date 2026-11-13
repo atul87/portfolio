@@ -1,5 +1,20 @@
 const path = require('path')
 
+const cspHeader = `
+  default-src 'self';
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com;
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+  font-src 'self' https://fonts.gstatic.com data:;
+  img-src 'self' data: https: blob:;
+  media-src 'self' https: data:;
+  connect-src 'self' https://generativelanguage.googleapis.com https://dev.to https://api.telegram.org https://www.google-analytics.com https://www.googletagmanager.com https://*.upstash.io;
+  frame-src 'self' https://maps.google.com https://www.google.com;
+  object-src 'none';
+  base-uri 'self';
+  form-action 'self';
+  frame-ancestors 'none';
+`.replace(/\s{2,}/g, ' ').trim()
+
 module.exports = {
   allowedDevOrigins: ['localhost', '127.0.0.1'],
   experimental: {
@@ -40,6 +55,10 @@ module.exports = {
         source: '/:path*',
         headers: [
           {
+            key: 'Content-Security-Policy',
+            value: cspHeader,
+          },
+          {
             key: 'X-Frame-Options',
             value: 'DENY',
           },
@@ -54,6 +73,10 @@ module.exports = {
           {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=()',
+          },
+          {
+            key: 'Cross-Origin-Opener-Policy',
+            value: 'same-origin',
           },
           {
             key: 'Strict-Transport-Security',

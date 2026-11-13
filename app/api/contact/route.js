@@ -16,9 +16,19 @@ const redis = process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_RE
   : null;
 
 function getClientIp(request) {
+  const directIp = request.headers.get('x-real-ip') || request.headers.get('cf-connecting-ip');
+  if (directIp) {
+    const trimmed = directIp.trim();
+    if (/^[a-fA-F0-9:.]+$/.test(trimmed) && trimmed.length <= 45) {
+      return trimmed;
+    }
+  }
   const forwardedFor = request.headers.get('x-forwarded-for') || '';
   const firstIp = forwardedFor.split(',')[0].trim();
-  return firstIp || 'unknown';
+  if (firstIp && /^[a-fA-F0-9:.]+$/.test(firstIp) && firstIp.length <= 45) {
+    return firstIp;
+  }
+  return '127.0.0.1';
 }
 
 async function isRateLimited(ip) {
@@ -266,11 +276,13 @@ export async function POST(request) {
       emailResult.error.includes('Username and Password not accepted')
     );
 
+    if (isBadCredentials) {
+      console.error('Email authentication failed: Gmail App Password rejected. Check GMAIL_PASSKEY configuration.');
+    }
+
     return NextResponse.json({
       success: false,
-      message: isBadCredentials
-        ? 'Gmail rejected the configured App Password. Update GMAIL_PASSKEY in Vercel Project Settings → Environment Variables for Production, then redeploy. Do not rely on .env.local for production.'
-        : 'Failed to send email. Please try again later.',
+      message: 'Failed to send email. Please try again later.',
     }, { status: 500 });
   } catch (error) {
     console.error('API Error:', error.message);

@@ -115,10 +115,10 @@ test("contact form validates input fields client-side", async ({ page }) => {
 
 test("404 page renders and navigates back home", async ({ page }) => {
     await page.goto("/non-existent-page");
-    await expect(page.getByText("404")).toBeVisible();
+    await expect(page.getByRole("heading", { name: "404" })).toBeVisible();
     await expect(page.getByText("Page Not Found")).toBeVisible();
 
-    const homeBtn = page.getByRole("button", { name: "Go to Home" });
+    const homeBtn = page.getByRole("link", { name: "Go to Home" });
     await homeBtn.click();
     await expect(page).toHaveURL("/");
 });
@@ -159,13 +159,13 @@ test("education section displays Kanpur Google Maps iframe card with address det
 
     // Verify map card header and address text
     await expect(educationSection.getByText("Location & Native Base")).toBeVisible();
-    await expect(educationSection.getByText("1735/02, Awas Vikas, Hanspuram")).toBeVisible();
+    await expect(educationSection.getByText("Awas Vikas, Hanspuram")).toBeVisible();
     await expect(educationSection.getByText(/Naubasta, Kanpur, Uttar Pradesh/)).toBeVisible();
 
     // Verify Google Maps iframe
     const mapIframe = educationSection.locator("iframe");
     await expect(mapIframe).toBeVisible();
-    await expect(mapIframe).toHaveAttribute("src", /maps\.google\.com\/maps\?q=1735%2F02/);
+    await expect(mapIframe).toHaveAttribute("src", /maps\.google\.com\/maps\?q=.*awas%20vikas/);
 
     // Verify copy button feedback
     const copyBtn = educationSection.getByRole("button", { name: /Copy/i });

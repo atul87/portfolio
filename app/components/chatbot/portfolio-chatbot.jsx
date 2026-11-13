@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Magnetic from "@/app/components/helper/magnetic";
 import "./portfolio-chatbot.scss";
 
 const initialMessage = {
@@ -222,16 +223,18 @@ export default function PortfolioChatbot() {
         </section>
       )}
 
-      <button
-        type="button"
-        className={`portfolio-chat__launcher ${isOpen ? "portfolio-chat__launcher--open" : ""}`}
-        onClick={() => setIsOpen((open) => !open)}
-        aria-label={isOpen ? "Close portfolio chat" : "Open portfolio chat"}
-        aria-expanded={isOpen}
-      >
-        <span className="portfolio-chat__launcher-icon">{isOpen ? "×" : "✦"}</span>
-        {!isOpen && <span className="portfolio-chat__launcher-text">Ask AI</span>}
-      </button>
+      <Magnetic strength={0.28} maxOffset={12}>
+        <button
+          type="button"
+          className={`portfolio-chat__launcher ${isOpen ? "portfolio-chat__launcher--open" : ""}`}
+          onClick={() => setIsOpen((open) => !open)}
+          aria-label={isOpen ? "Close portfolio chat" : "Open portfolio chat"}
+          aria-expanded={isOpen}
+        >
+          <span className="portfolio-chat__launcher-icon">{isOpen ? "×" : "✦"}</span>
+          {!isOpen && <span className="portfolio-chat__launcher-text">Ask AI</span>}
+        </button>
+      </Magnetic>
     </div>
   );
 }
