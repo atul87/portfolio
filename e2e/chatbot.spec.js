@@ -104,6 +104,34 @@ test.describe("Portfolio Chatbot (Ask Atul AI)", () => {
         ).toBeVisible();
     });
 
+    test("shows error alert and retry button when chat API fails", async ({ page }) => {
+        await page.route("**/api/chat", async (route) => {
+            await route.fulfill({
+                status: 500,
+                contentType: "application/json",
+                body: JSON.stringify({
+                    error: "AI service is temporarily unavailable.",
+                }),
+            });
+        });
+
+        await page.goto("/");
+        await page.getByRole("button", { name: "Open portfolio chat" }).click();
+
+        const dialog = page.getByRole("dialog", { name: "Atul's portfolio assistant" });
+        const input = dialog.getByPlaceholder(/Ask about Atul's work/);
+        await input.fill("Hello");
+        await dialog.locator("form button[type='submit']").click();
+
+        // Verify error alert is rendered
+        const errorAlert = dialog.locator('div[role="alert"]');
+        await expect(errorAlert).toBeVisible();
+        await expect(errorAlert).toContainText("AI service is temporarily unavailable.");
+
+        // Verify retry button is rendered
+        await expect(errorAlert.getByRole("button", { name: "Retry" })).toBeVisible();
+    });
+
     test("backend chat API validates input schemas properly", async ({ request }) => {
         // Invalid non-JSON payload returns 400
         const resInvalidJson = await request.post("/api/chat", {

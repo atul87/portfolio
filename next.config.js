@@ -7,7 +7,7 @@ const cspHeader = `
   font-src 'self' https://fonts.gstatic.com data:;
   img-src 'self' data: https: blob:;
   media-src 'self' https: data:;
-  connect-src 'self' https://generativelanguage.googleapis.com https://dev.to https://api.telegram.org https://www.google-analytics.com https://www.googletagmanager.com https://*.upstash.io;
+  connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com;
   frame-src 'self' https://maps.google.com https://www.google.com;
   object-src 'none';
   base-uri 'self';

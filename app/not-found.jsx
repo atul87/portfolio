@@ -1,11 +1,9 @@
-// @flow strict
-
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
 
 export default function NotFound() {
   return (
-    <main className="min-h-screen flex items-center justify-center px-4 py-16 relative overflow-hidden bg-[#0d1224]">
+    <div className="min-h-screen flex items-center justify-center px-4 py-16 relative overflow-hidden bg-[#0d1224]">
       {/* Ambient background glow */}
       <div 
         className="w-[300px] h-[300px] bg-violet-600/15 rounded-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 filter blur-3xl pointer-events-none" 
@@ -13,7 +11,7 @@ export default function NotFound() {
       />
 
       <div className="relative z-10 max-w-md w-full frosted-glass border border-[#1b2c68a0] rounded-2xl p-8 sm:p-10 text-center shadow-2xl shadow-indigo-950/50">
-        <span className="font-mono text-xs uppercase tracking-widest text-[#16f2b3] bg-[#121840] px-3 py-1 rounded-full border border-indigo-900/60 inline-block mb-4">
+        <span className="font-mono text-xs text-[#16f2b3] bg-[#121840] px-3 py-1 rounded-full border border-indigo-900/60 inline-block mb-4">
           Route Not Found
         </span>
 
@@ -41,6 +39,6 @@ export default function NotFound() {
           </Link>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

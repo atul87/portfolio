@@ -97,12 +97,15 @@ test("project card copy button copies project details and shows feedback", async
 });
 
 test("contact form validates input fields client-side", async ({ page }) => {
-    await page.goto("/");
+    await page.goto("/#contact");
+    const contactSection = page.locator("#contact");
+    await expect(contactSection).toBeVisible();
 
     // Attempt to submit empty form
-    const sendBtn = page.getByRole("button", { name: "Send Message" });
+    const sendBtn = contactSection.getByRole("button", { name: "Send Message" });
+    await sendBtn.scrollIntoViewIfNeeded();
     await sendBtn.click();
-    await expect(page.getByText("Please complete all fields.")).toBeVisible();
+    await expect(contactSection.getByText("Please complete all fields.")).toBeVisible();
 
     // Fill invalid email and check email error
     const nameInput = page.locator('#contact-name');
@@ -110,7 +113,60 @@ test("contact form validates input fields client-side", async ({ page }) => {
     await nameInput.fill("Test Recruiter");
     await emailInput.fill("invalid-email-format");
     await emailInput.blur();
-    await expect(page.getByText("Please provide a valid email.")).toBeVisible();
+    await expect(contactSection.getByText("Please provide a valid email.")).toBeVisible();
+});
+
+test("contact form submits successfully with mocked 200 API and resets inputs", async ({ page }) => {
+    // Intercept contact API with successful response
+    await page.route("**/api/contact", async (route) => {
+        await route.fulfill({
+            status: 200,
+            contentType: "application/json",
+            body: JSON.stringify({ success: true, message: "Message sent successfully!" }),
+        });
+    });
+
+    await page.goto("/#contact");
+
+    const nameInput = page.locator("#contact-name");
+    const emailInput = page.locator("#contact-email");
+    const messageInput = page.locator("#contact-message");
+    const sendBtn = page.getByRole("button", { name: "Send Message" });
+
+    await nameInput.fill("Recruiter Name");
+    await emailInput.fill("recruiter@example.com");
+    await messageInput.fill("Hi Atul, we would love to speak with you regarding an opportunity.");
+
+    await sendBtn.click();
+
+    // Verify success toast appears
+    await expect(page.getByText("Message sent successfully!")).toBeVisible();
+
+    // Verify form fields are cleared
+    await expect(nameInput).toHaveValue("");
+    await expect(emailInput).toHaveValue("");
+    await expect(messageInput).toHaveValue("");
+});
+
+test("contact form displays error toast when server returns error message", async ({ page }) => {
+    // Intercept contact API with 400 error response
+    await page.route("**/api/contact", async (route) => {
+        await route.fulfill({
+            status: 400,
+            contentType: "application/json",
+            body: JSON.stringify({ success: false, message: "Please provide a valid email address." }),
+        });
+    });
+
+    await page.goto("/#contact");
+
+    await page.locator("#contact-name").fill("Test User");
+    await page.locator("#contact-email").fill("test@validformat.com");
+    await page.locator("#contact-message").fill("Hello world!");
+
+    await page.getByRole("button", { name: "Send Message" }).click();
+
+    await expect(page.getByText("Please provide a valid email address.")).toBeVisible();
 });
 
 test("404 page renders and navigates back home", async ({ page }) => {

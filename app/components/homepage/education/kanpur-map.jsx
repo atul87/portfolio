@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { FaMapMarkerAlt, FaExternalLinkAlt, FaDirections, FaCheck, FaCopy } from "react-icons/fa";
+import { FaMapMarkerAlt, FaExternalLinkAlt, FaDirections, FaCheck, FaCopy, FaGraduationCap, FaGlobeAmericas } from "react-icons/fa";
 import { SiGooglemaps } from "react-icons/si";
 
 export default function KanpurMapCard() {
@@ -108,14 +108,17 @@ export default function KanpurMapCard() {
 
         {/* Location Tags */}
         <div className="flex flex-wrap gap-1.5 pt-1">
-          <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#161d4a] text-gray-300 border border-[#222d6e]">
-            📍 Naubasta, Kanpur
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-mono bg-[#161d4a] text-gray-300 border border-[#222d6e]">
+            <FaMapMarkerAlt size={10} className="text-[#16f2b3]" aria-hidden="true" />
+            <span>Naubasta, Kanpur</span>
           </span>
-          <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#161d4a] text-[#16f2b3] border border-[#222d6e]">
-            🎓 Final-Year B.Tech CSE (&apos;27)
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-mono bg-[#161d4a] text-[#16f2b3] border border-[#222d6e]">
+            <FaGraduationCap size={11} className="text-[#16f2b3]" aria-hidden="true" />
+            <span>Final-Year B.Tech CSE (&apos;27)</span>
           </span>
-          <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#161d4a] text-gray-300 border border-[#222d6e]">
-            🌐 Relocation / Remote Ready
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-mono bg-[#161d4a] text-gray-300 border border-[#222d6e]">
+            <FaGlobeAmericas size={10} className="text-violet-400" aria-hidden="true" />
+            <span>Relocation / Remote Ready</span>
           </span>
         </div>
 

@@ -9,7 +9,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "test:e2e": "playwright test"
+    "test": "playwright test",
+    "test:unit": "vitest run",
+    "test:unit:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed",
+    "test:report": "playwright show-report"
   },
   "dependencies": {
     "@google/genai": "^2.30.0",
@@ -27,6 +33,7 @@
     "sharp": "^0.33.5"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
     "@playwright/test": "^1.59.1",
     "@tailwindcss/postcss": "^4.1.16",
     "autoprefixer": "latest",
@@ -34,6 +41,7 @@
     "eslint-config-next": "^16.4.6",
     "postcss": "latest",
     "sass": "^1.69.5",
-    "tailwindcss": "latest"
+    "tailwindcss": "latest",
+    "vitest": "^5.1.1"
   }
 }

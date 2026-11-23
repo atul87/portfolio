@@ -133,4 +133,32 @@ test.describe("Security & Vulnerability Audit Suite", () => {
     });
     expect(oversizedChatRes.status()).toBe(400);
   });
+
+  test("Content-Security-Policy enforces strict origin control without server exfiltration channels", async ({ request }) => {
+    const res = await request.get("/");
+    const headers = res.headers();
+    const csp = headers["content-security-policy"];
+    expect(csp, "CSP header must be defined").toBeTruthy();
+
+    // Verify server-side secret APIs are not whitelisted for client connect
+    expect(csp).not.toContain("api.telegram.org");
+    expect(csp).not.toContain("generativelanguage.googleapis.com");
+    expect(csp).not.toContain("upstash.io");
+
+    // Verify core security directives
+    expect(csp).toContain("object-src 'none'");
+    expect(csp).toContain("frame-ancestors 'none'");
+  });
+
+  test("blog article reader enforces safe protocol schemes on all rendered links", async ({ page }) => {
+    await page.goto("/blog/federated-learning-cyber-defence");
+    const links = await page.locator(".article-body a").evaluateAll((elements) =>
+      elements.map((el) => el.getAttribute("href") || "")
+    );
+
+    for (const href of links) {
+      expect(href, `Rendered link '${href}' must not use javascript: or data: URI`).not.toMatch(/^(javascript:|data:)/i);
+      expect(href, `Rendered link '${href}' must use a safe scheme`).toMatch(/^(https?:\/\/|\/|mailto:|#)/i);
+    }
+  });
 });

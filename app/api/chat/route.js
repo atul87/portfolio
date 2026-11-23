@@ -65,7 +65,7 @@ async function isRateLimited(ip) {
       return count > MAX_REQUESTS;
     } catch (error) {
       console.error("Upstash Redis rate limiter error:", error);
-      return false; // Fallback to allowing request in case of Redis outage
+      return isLocallyRateLimited(ip); // Fallback to local in-memory limiter on Redis outage
     }
   }
 

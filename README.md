@@ -196,26 +196,31 @@ npm run start
 
 ## 🧪 Automated Testing Suite
 
-The repository is equipped with an end-to-end test suite powered by [Playwright](https://playwright.dev/):
+The repository is equipped with a two-tier testing suite combining **[Vitest](https://vitest.dev/)** for rapid in-memory unit tests and **[Playwright](https://playwright.dev/)** for comprehensive end-to-end and accessibility testing:
 
 ```bash
-# Run all end-to-end tests across headless Chromium
-npm run test:e2e
+# Run all Playwright end-to-end tests
+npm test
+
+# Run Vitest fast unit tests (< 2s)
+npm run test:unit
 
 # Run tests in interactive UI mode
-npx playwright test --ui
+npm run test:ui
 
 # Run linter checks
 npm run lint
 ```
 
 ### Test Coverage Highlights
-- ✅ **API Health & Validation:** Verifies status codes, JSON format enforcement, spam honeypot trap, and rate limiting.
+- ✅ **Fast Unit Testing (Vitest):** Sub-second validation of utility functions (`check-email`, `time-converter`), data contracts (`projectsData`, `personalData`, `galleryData`), and local blog schemas.
+- ✅ **API Health & Validation:** Granular suites verifying status codes, JSON schema enforcement, spam honeypot trap, and IP rate limiting.
+- ✅ **Automated Accessibility (Axe-core):** Automated WCAG 2.1 AA audits verifying landmarks, ARIA hierarchy, button names, and dialog accessibility.
 - ✅ **Assets & Resume Integrity:** Validates that `/resume.pdf` exists and returns a valid `%PDF` binary header.
-- ✅ **Projects & Micro-interactions:** Tests category filters, project-card link rendering, and copy actions.
+- ✅ **Projects & Micro-interactions:** Tests category filters, project-card link rendering, copy actions, and contact form submission.
 - ✅ **Research & DOI Links:** Checks that the configured IEEE ISCS and SCEECS DOI links are present.
 - ✅ **SEO & Metadata:** Asserts dynamic sitemap generation, crawler robots rules, OpenGraph preview images, and canonical links.
-- ✅ **Accessibility & Mobile UX:** Verifies keyboard Escape key drawer collapse and screen-reader compliant aria tags.
+- ✅ **Mobile & Responsive UX:** Multi-viewport regression tests ensuring zero horizontal scroll overflow on mobile and tablet devices.
 
 ---
 

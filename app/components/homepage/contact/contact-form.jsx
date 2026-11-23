@@ -1,7 +1,6 @@
 "use client";
-// @flow strict
+
 import { isValidEmail } from "@/utils/check-email";
-import axios from "axios";
 import { useState } from "react";
 import { TbMailForward } from "react-icons/tb";
 import { ToastContainer, toast } from "react-toastify";
@@ -36,7 +35,22 @@ function ContactForm() {
 
     try {
       setIsLoading(true);
-      await axios.post("/api/contact", userInput);
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userInput),
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        if (data?.message === "Email sender credentials are missing.") {
+          toast.error("The contact form is not fully configured yet. Please email me directly at atulverma15704@gmail.com.");
+        } else {
+          toast.error(data?.message || "Failed to send message. Please try again.");
+        }
+        return;
+      }
 
       toast.success("Message sent successfully!");
       setUserInput({
@@ -44,13 +58,8 @@ function ContactForm() {
         email: "",
         message: "",
       });
-    } catch (error) {
-      const apiMessage = error?.response?.data?.message;
-      if (apiMessage === "Email sender credentials are missing.") {
-        toast.error("The contact form is not fully configured yet. Please email me directly at atulverma15704@gmail.com.");
-      } else {
-        toast.error(apiMessage || "Failed to send message. Please try again.");
-      }
+    } catch {
+      toast.error("Failed to send message. Please try again.");
     } finally {
       setIsLoading(false);
     };

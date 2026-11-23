@@ -65,12 +65,15 @@ const formatInline = (text) => {
     }
     const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
     if (linkMatch) {
+      const rawUrl = (linkMatch[2] || "").trim();
+      const isSafe = /^(https?:\/\/|\/|mailto:|#)/i.test(rawUrl);
+      const safeHref = isSafe ? rawUrl : "#";
       return (
         <a
           key={index}
-          href={linkMatch[2]}
-          target="_blank"
-          rel="noopener noreferrer"
+          href={safeHref}
+          target={safeHref.startsWith("http") ? "_blank" : undefined}
+          rel={safeHref.startsWith("http") ? "noopener noreferrer" : undefined}
           className="text-[#16f2b3] hover:underline"
         >
           {linkMatch[1]}

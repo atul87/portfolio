@@ -26,8 +26,8 @@ export const metadata = {
 
 export default function GalleryPage() {
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       <GalleryClient />
-    </main>
+    </div>
   );
 }
