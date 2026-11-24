@@ -3,9 +3,10 @@
 # ⚡ Atul — Portfolio & Engineering Lab
 ### AI/ML Engineer · Full-Stack Developer · IEEE Research Author
 
-[![Next.js 16](https://img.shields.io/badge/Next.js-16.3.8-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
-[![React 19](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Next.js 16](https://img.shields.io/badge/Next.js-16.4.6-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React 19](https://img.shields.io/badge/React-19.2-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![Tailwind CSS 4](https://img.shields.io/badge/Tailwind_CSS-4.1.16-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Vitest](https://img.shields.io/badge/Vitest-Unit_Tested-6E9F18?style=for-the-badge&logo=vitest&logoColor=white)](https://vitest.dev/)
 [![Playwright](https://img.shields.io/badge/Playwright-E2E_Tested-2EAD33?style=for-the-badge&logo=playwright&logoColor=white)](https://playwright.dev/)
 [![IEEE ISCS 2025](https://img.shields.io/badge/IEEE_ISCS-2025_Author-00629B?style=for-the-badge&logo=ieee&logoColor=white)](https://doi.org/10.1109/ISCS69371.2025.11386415)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
@@ -51,8 +52,8 @@ This portfolio represents more than a static resume—it is an **enterprise-grad
 
 | Domain | Technologies & Frameworks |
 | :--- | :--- |
-| **Core Framework** | [Next.js 16.3.8](https://nextjs.org/) (App Router), [React 19](https://react.dev/), JavaScript (ESNext) |
-| **Styling & Design** | [Tailwind CSS](https://tailwindcss.com/), Custom SCSS, Glassmorphism, Dark Neon Cyberpunk Theme |
+| **Core Framework** | [Next.js 16.4.6](https://nextjs.org/) (App Router), [React 19.2.0](https://react.dev/), JavaScript (ESNext) |
+| **Styling & Design** | [Tailwind CSS 4.1](https://tailwindcss.com/), Custom SCSS, Glassmorphism, Dark Neon Cyberpunk Theme |
 | **Backend & APIs** | Next.js API Routes, Nodemailer (SMTP), Telegram Bot API, Upstash Redis Rate Limiting |
 | **Testing & CI/CD** | [Playwright](https://playwright.dev/) End-to-End Suite, ESLint, Vercel Automated Deployments |
 | **Security & SEO** | HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, dynamic `sitemap.xml`, `robots.txt`, 1200×630 Open Graph banner |
